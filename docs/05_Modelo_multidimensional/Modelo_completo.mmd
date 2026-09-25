@@ -1,0 +1,96 @@
+erDiagram
+    DimFecha ||--o{ FactIncidente : "FechaKey"
+    DimHora ||--o{ FactIncidente : "HoraKey"
+    DimTipoIncidente ||--o{ FactIncidente : "TipoIncidenteKey"
+    DimTipoPropiedad ||--o{ FactIncidente : "TipoPropiedadKey"
+    DimGeografia ||--o{ FactIncidente : "GeografiaKey"
+    DimFecha ||--o{ FactMovilizacion : "FechaKey"
+    DimHora ||--o{ FactMovilizacion : "HoraKey"
+    DimTipoIncidente ||--o{ FactMovilizacion : "TipoIncidenteKey"
+    DimTipoPropiedad ||--o{ FactMovilizacion : "TipoPropiedadKey"
+    DimGeografia ||--o{ FactMovilizacion : "GeografiaKey"
+    DimEstacion ||--o{ FactMovilizacion : "EstacionKey"
+    DimOrigenDespliegue ||--o{ FactMovilizacion : "OrigenDespliegueKey"
+    DimMotivoDemora ||--o{ FactMovilizacion : "MotivoDemoraKey"
+    DimFecha {
+        int FechaKey PK
+        date Fecha
+        smallint Anio
+        tinyint Trimestre
+        tinyint Mes
+        tinyint Dia
+        tinyint DiaSemana
+    }
+    DimHora {
+        int HoraKey PK
+        tinyint Hora
+        nvarchar Franja
+    }
+    DimTipoIncidente {
+        int TipoIncidenteKey PK
+        nvarchar Grupo
+        nvarchar Clasificacion
+        nvarchar ServicioEspecial
+    }
+    DimTipoPropiedad {
+        int TipoPropiedadKey PK
+        nvarchar Categoria
+        nvarchar Tipo
+    }
+    DimGeografia {
+        int GeografiaKey PK
+        nvarchar BoroughCodigo
+        nvarchar BoroughNombre
+        nvarchar WardCodigo
+        nvarchar WardNombre
+        nvarchar DistritoPostal
+    }
+    DimEstacion {
+        int EstacionKey PK
+        nvarchar Codigo
+        nvarchar Nombre
+    }
+    DimOrigenDespliegue {
+        int OrigenDespliegueKey PK
+        nvarchar Origen
+    }
+    DimMotivoDemora {
+        int MotivoDemoraKey PK
+        nvarchar Codigo
+        nvarchar Descripcion
+    }
+    FactIncidente {
+        varchar IncidentNumber PK
+        int FechaKey FK
+        int HoraKey FK
+        int TipoIncidenteKey FK
+        int TipoPropiedadKey FK
+        int GeografiaKey FK
+        int PrimerArriboSeg
+        int SegundoArriboSeg
+        int NumEstaciones
+        int NumBombas
+        int MinutosBombaRedondeados
+        decimal CostoNocionalGBP
+        int NumLlamadas
+        bit TieneMovilizacion
+    }
+    FactMovilizacion {
+        bigint ResourceMobilisationId PK
+        varchar IncidentNumber
+        int FechaKey FK
+        int HoraKey FK
+        int TipoIncidenteKey FK
+        int TipoPropiedadKey FK
+        int GeografiaKey FK
+        int EstacionKey FK
+        int OrigenDespliegueKey FK
+        int MotivoDemoraKey FK
+        nvarchar ResourceCodigo
+        nvarchar PerformanceReporting
+        datetime2 FechaHoraMovilizada
+        int SalidaSeg
+        int ViajeSeg
+        int LlegadaSeg
+        bit TieneIncidente
+    }

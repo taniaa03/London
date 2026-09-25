@@ -1,0 +1,22 @@
+# Descargas completas; consultar data/README.md
+/data/raw/
+/02_Datos/
+# Material interno y copias de trabajo
+/03_Soporte_interno/
+/08_Exposicion/
+/tmp/
+*.zip
+# Archivos temporales y entornos locales
+~$*
+*.tmp
+*.bak
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example

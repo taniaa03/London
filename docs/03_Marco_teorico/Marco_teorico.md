@@ -1,0 +1,61 @@
+# 4. Marco teórico
+
+## 4.1. Business Intelligence como apoyo a la gestión
+
+Business Intelligence permite organizar información para comprender un proceso y apoyar decisiones. Su valor depende de la pregunta de gestión que se busca resolver. En este trabajo, la decisión es **qué zonas y tipos de atención deberían revisarse primero por sus tiempos de respuesta y recursos asociados, y dónde convendría investigar las causas de una concentración de falsas alarmas**. Los registros de atención constituyen la evidencia para esa decisión.
+
+La relación entre negocio y tecnología se plantea de esta manera: decisión de revisar la atención → comparación por territorio y tipo de incidente → identificación de tiempos y recursos asociados → modelo multidimensional. El diseño seguirá cuatro decisiones: seleccionar el proceso, declarar el grano, identificar las dimensiones y definir las medidas. Esta secuencia conecta la necesidad de gestión con los datos disponibles ([Kimball Group, proceso de diseño](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)).
+
+## 4.2. Proceso, hechos y nivel de detalle
+
+El proceso estudiado es la atención operativa de incidentes, observada mediante los registros de incidentes y de movilizaciones. Un **hecho** representa un evento medible de ese proceso. El **nivel de detalle o grano** establece qué significa una fila. Aquí existen dos: el incidente atendido y la movilización de un recurso hacia ese incidente. Un incidente puede requerir varios recursos; por eso no deben contarse como si fueran lo mismo.
+
+Se propone conservar ambos niveles en tablas distintas. El incidente permite estudiar la demanda y su clasificación final; la movilización permite describir los recursos desplegados y el contexto de su desplazamiento. Las falsas alarmas se analizan como una categoría del incidente, no como un proceso con un grano diferente. Las comparaciones que combinan ambos hechos utilizarán el mismo conjunto de incidentes enlazados, identificado mediante controles de cobertura. El costo nocional del incidente permanece una sola vez, aunque hayan participado varios recursos. Cada grano requiere su propia tabla de hechos; las medidas deben corresponder al evento representado por la fila ([Kimball Group, grano](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/grain/)).
+
+## 4.3. Dimensiones y modelo multidimensional
+
+Las dimensiones describen un hecho desde distintas perspectivas: cuándo ocurrió, dónde, qué tipo de incidente fue y qué clase de inmueble estuvo involucrada. En el despliegue se añaden estación, origen del recurso y motivo de demora reportado. Estas perspectivas permiten comparar segmentos de gestión sin perder el significado de cada evento.
+
+El modelo estrella relaciona una tabla de hechos con dimensiones descriptivas. Al compartir dimensiones entre dos hechos se forma una constelación de estrellas. Este diseño se adapta al proceso: las dimensiones comunes relacionan la demanda con el despliegue, mientras las propias de movilización describen su ejecución. La propuesta incorpora ocho dimensiones. Fecha, hora, tipo de incidente, tipo de propiedad y geografía serán conformadas: tendrán el mismo significado y las mismas claves en ambos hechos. Esto permite agregar cada hecho por separado y comparar los resultados en los mismos grupos ([Kimball Group, dimensiones conformadas](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/conformed-dimension/)).
+
+## 4.4. Datamart y análisis multidimensional
+
+Un datamart organiza información de un ámbito de la institución. El alcance aquí es la atención de incidentes durante 2025, con dos perspectivas relacionadas: tiempos de respuesta y recursos utilizados. Los incendios, falsas alarmas y servicios especiales se distinguen para comparar atenciones de características semejantes.
+
+OLTP se orienta al registro de transacciones y OLAP a su análisis desde distintas perspectivas. En el modelo propuesto será posible examinar un año por meses, un borough por wards y una categoría de propiedad por tipos específicos. Son jerarquías de análisis, no tablas adicionales para aumentar artificialmente el número de dimensiones.
+
+## 4.5. Integración y significado de los datos
+
+La integración debe preservar qué representa cada campo. El proceso ETL —extracción, transformación y carga— permitirá relacionar incidentes y movilizaciones, uniformizar formatos y distinguir valores ausentes de valores reales. Su papel es asegurar que las futuras comparaciones sean confiables. En este avance se definen esas reglas; la implementación no forma parte de la entrega.
+
+La integración requiere conservar las fuentes, definir las relaciones entre registros y construir un calendario coherente. Los defectos de los archivos son aspectos técnicos que deben resolverse; **la decisión de gestión del proyecto es seleccionar zonas y tipos de atención para revisión operativa o investigación preventiva**.
+
+## 4.6. Aplicación de la teoría a la propuesta
+
+| Concepto | Aplicación en este trabajo |
+|---|---|
+| Decisión de gestión | Seleccionar zonas y tipos de atención para revisión operativa o investigación preventiva |
+| Proceso | Atención de incidentes y despliegue de recursos |
+| Grano | Un incidente / una movilización |
+| Hechos | FactIncidente y FactMovilizacion |
+| Dimensiones | Ocho perspectivas del evento y su despliegue |
+| Datamart | Atención de incidentes: tiempos de respuesta y recursos asociados por territorio y tipo de demanda |
+| Integración | Relación trazable mediante IncidentNumber, sin repetir costos |
+| Jerarquías | Año–trimestre–mes–día; borough–ward; categoría–tipo de propiedad |
+
+## 4.7. Conceptos operativos que orientan la interpretación
+
+| Concepto | Significado en el proyecto |
+|---|---|
+| Atención de incidente | Evento atendido y clasificado por LFB; puede generar varias movilizaciones. |
+| Movilización | Despliegue individual de un recurso hacia un incidente. |
+| Tiempo de llegada | Intervalo desde la movilización hasta la llegada del recurso; no incluye por sí solo todo el tiempo desde la llamada. |
+| Primer arribo | Llegada de la primera autobomba al incidente; se distingue del tiempo de cada recurso que participa. |
+| Demora reportada | Motivo registrado para contextualizar la movilización; no expresa cuántos segundos se perdieron exclusivamente por ese motivo. |
+| Falsa alarma | Clasificación final de un aviso atendido como posible incendio; se identifica por IncidentGroup, sin inferirla a partir del costo o el tiempo. |
+| Costo nocional | Valoración estimada del tiempo de autobombas según una tarifa estándar; no corresponde a una pérdida presupuestaria demostrada. |
+| Priorización | Selección fundamentada de zonas y tipos de atención que conviene revisar; requiere comparar atenciones de características semejantes. |
+
+Las definiciones de tiempos y costo se apoyan en los metadatos y en las aclaraciones de LFB de [2024](https://www.london-fire.gov.uk/media/8863/foia84201-response-times-of-fire-brigades-and-data-collation-response.pdf) y [2022](https://www.london-fire.gov.uk/media/6796/foi-response-66361.pdf). La clasificación de falsas alarmas se interpreta con las [definiciones oficiales de Inglaterra](https://www.gov.uk/government/statistics/fire-and-rescue-incident-statistics-year-ending-march-2025/fire-and-rescue-incident-statistics-year-ending-march-2025).
+
+[Volver al informe principal](../../README.md) · [Índice de componentes](../README.md).
