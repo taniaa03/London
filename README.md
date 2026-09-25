@@ -256,7 +256,7 @@ Los tiempos publicados pueden estar sujetos a reglas de reporte. PerformanceRepo
 
 ![Movilizaciones y ocho dimensiones](docs/05_Modelo_multidimensional/FactMovilizacion.png)
 
-Los diagramas muestran las claves, relaciones 1:N y grupos de medidas. La especificación de todos los campos está en el [diccionario del modelo](docs/04_Diccionario_datos/Diccionario_modelo.md). El [modelo Mermaid editable](docs/05_Modelo_multidimensional/Modelo_completo.mmd) conserva todos los atributos.
+Los diagramas muestran los campos, las claves y las relaciones 1:N. La especificación de todos los campos está en el [diccionario del modelo](docs/04_Diccionario_datos/Diccionario_modelo.md). El [modelo Mermaid editable](docs/05_Modelo_multidimensional/Modelo_completo.mmd) conserva todos los atributos.
 
 ### 6.9. Población de análisis
 
