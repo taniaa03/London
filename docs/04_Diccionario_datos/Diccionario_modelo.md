@@ -24,7 +24,7 @@ Hora de llamada publicada; no equivale a la hora de movilización.
 |---|---|---|---|
 | HoraKey | int | PK | HourOfCall + 1; 1–24 representan 0–23; 0 desconocido. |
 | Hora | tinyint | Atributo | HourOfCall, 0–23. |
-| Franja | nvarchar(30) | Atributo | Agrupación académica: madrugada 0–5, mañana 6–11, tarde 12–17, noche 18–23; no son turnos oficiales. |
+| Franja | nvarchar(30) | Atributo | Agrupación horaria: madrugada 0–5, mañana 6–11, tarde 12–17, noche 18–23; no son turnos oficiales. |
 
 ## DimTipoIncidente
 
@@ -138,17 +138,15 @@ Una fila por ResourceMobilisationId de CalYear=2025 aceptado tras deduplicar y s
 
 Todas las FK son obligatorias y usan la fila 0 cuando corresponde. Las medidas desconocidas permanecen NULL; nunca se convierten a 0 por conveniencia. Las dimensiones con claves sustitutas reservan explícitamente el miembro 0. Para Fecha y Hora se generan claves deterministas. Se mantiene un calendario completo para representar todos los días del periodo, incluso aquellos sin registros.
 
-Las dimensiones descriptivas se desnormalizan. En este corte congelado se plantea actualización tipo 1 para correcciones de etiquetas, manteniendo los originales y bitácoras de carga. Una futura comparación histórica deberá evaluar historial de cambios tipo 2 y cambios de límites territoriales. No se cuenta dos veces una dimensión por asumir varios roles.
+Usaremos dimensiones desnormalizadas y actualizaciones tipo 1 para corregir etiquetas. Conservaremos los archivos originales y el registro de los cambios realizados durante la carga.
 
-Las longitudes propuestas son conservadoras; validar cualquier nueva descarga antes de cargar y rechazar truncamientos. Usar búsquedas de combinación completa para dimensiones compuestas y código para estación/demora. Si un código presenta dos nombres en la misma extracción, resolver en staging antes del lookup, sin elegir arbitrariamente.
+Antes de cargar los datos verificaremos que las longitudes definidas admitan los valores de la fuente. Buscaremos las claves por la combinación completa de atributos de cada dimensión y por código en estación y demora. Si un código tiene dos nombres en la misma descarga, revisaremos el conflicto antes de asignar la clave.
 
 ## Reglas de enlace y tiempo
 
 En FactMovilizacion, las cinco claves compartidas se obtienen del incidente enlazado por IncidentNumber. FechaKey y HoraKey representan el contexto de llamada; FechaHoraMovilizada conserva la marca GMT de movilización. Si no existe enlace, las cinco claves compartidas son 0 y TieneIncidente=0. Las tres dimensiones propias se obtienen de la movilización. Una marca GMT no se combina con una hora local sin verificar antes las convenciones de la fuente.
 
 PerformanceReporting se conserva como categoría publicada, no como cantidad. El ejemplo oficial 1 corresponde al primer recurso que llega; el campo no sustituye la documentación completa del universo usado en reportes de desempeño.
-
-DimHora conserva las horas publicadas y agrupaciones descriptivas. No representa la política de alarmas automáticas de 07:00–20:30: el límite de media hora requiere información y validación adicionales. Ese análisis de cumplimiento no forma parte del alcance.
 
 [Modelo y reglas de agregación](../05_Modelo_multidimensional/Modelo_multidimensional.md) · [Diccionario de fuentes](Diccionario_fuentes.md).
 

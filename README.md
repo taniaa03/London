@@ -11,19 +11,19 @@
 
 La gestión de los servicios públicos de respuesta inmediata exige atender las necesidades de la población y organizar los recursos disponibles para hacerlo. En los servicios de bomberos, esta tarea implica responder a situaciones de distinta naturaleza y gravedad, en las que deben considerarse tanto la rapidez de la atención como los recursos necesarios para intervenir.
 
-En el Reino Unido, la actividad de estos servicios abarca distintos tipos de incidentes, no solo incendios. Las estadísticas oficiales de Inglaterra muestran que las falsas alarmas representaron más de un tercio de los incidentes atendidos en el año terminado en marzo de 2025 (MHCLG, 2025). Este contexto evidencia la importancia de examinar la composición de la demanda, además de la respuesta a los incendios.
+En el Reino Unido, la actividad de estos servicios abarca distintos tipos de incidentes, no solo incendios. Las estadísticas oficiales de Inglaterra muestran que las falsas alarmas representaron más de un tercio de los incidentes atendidos en el año terminado en marzo de 2025 (MHCLG, 2025). Estas cifras muestran que la demanda de los servicios de bomberos también incluye una cantidad importante de avisos que terminan clasificados como falsas alarmas.
 
-En Londres, esta función la cumple la London Fire Brigade (LFB), que atiende incendios, servicios especiales y falsas alarmas mediante un proceso que comienza con la llamada de emergencia y continúa con la movilización de las unidades, su desplazamiento hasta el lugar, la intervención y el retorno a la estación. Este proceso constituye el objeto de estudio del proyecto y puede examinarse desde dos perspectivas complementarias: la oportunidad de la respuesta, es decir, el tiempo que tardan los recursos en llegar, y los recursos que requiere cada incidente. Ambas adquieren significado al considerar el tipo de incidente, la zona, el horario y el tipo de inmueble. Aunque el proceso completo incluye el retorno de las unidades, el análisis se concentrará en los tiempos desde la movilización hasta la llegada y en los recursos registrados para la atención.
+En Londres, esta función la cumple la London Fire Brigade (LFB), que atiende incendios, servicios especiales y falsas alarmas mediante un proceso que comienza con la llamada de emergencia y continúa con la movilización de las unidades, su desplazamiento hasta el lugar, la intervención y el retorno a la estación. En este trabajo estudiaremos cuánto tardan las unidades en llegar y qué recursos requiere cada atención, considerando el tipo de incidente, la zona, el horario y el inmueble. Nos concentraremos en los tiempos desde la movilización hasta la llegada y en los recursos registrados durante la intervención.
 
 La oportunidad de la respuesta es especialmente importante cuando existe riesgo para las personas y los bienes. Los ensayos de Kerber (2012) muestran que, en condiciones experimentales, una sala con mobiliario moderno puede alcanzar el flashover (la transición rápida hacia un incendio generalizado en el ambiente) en menos de cinco minutos. La LFB fija como meta que la primera autobomba llegue en un promedio de seis minutos y la segunda en un promedio de ocho, contados desde la movilización del recurso. Se trata de promedios para todo Londres, no de un plazo garantizado en cada atención (Greater London Authority, 2025; LFB, 2024).
 
-Aunque el promedio de primera llegada se mantiene dentro de la meta de seis minutos, su margen se ha reducido. Entre 2017 y 2025, los incidentes atendidos aumentaron cerca de un tercio y, tras una leve reducción en 2020, el tiempo promedio de primera llegada aumentó cada año hasta alcanzar 329 segundos en 2025 (London Assembly Research Unit, 2026). Como contexto del desplazamiento, Londres fue en 2025 la ciudad más congestionada del Reino Unido (INRIX, 2025); este dato general no mide directamente las demoras de las autobombas. Por ello, conviene examinar los tiempos y los motivos de demora que la propia LFB registra en cada movilización.
+Aunque el promedio de primera llegada se mantiene dentro de la meta de seis minutos, su margen se ha reducido. Entre 2017 y 2025, los incidentes atendidos aumentaron cerca de un tercio y, tras una leve reducción en 2020, el tiempo promedio de primera llegada aumentó cada año hasta alcanzar 329 segundos en 2025 (London Assembly Research Unit, 2026). Además, Londres fue en 2025 la ciudad más congestionada del Reino Unido (INRIX, 2025). Para estudiar las demoras de las autobombas utilizaremos los tiempos y motivos que LFB registra en cada movilización, ya que el dato de congestión de la ciudad no mide directamente sus recorridos.
 
 La segunda perspectiva examina los recursos empleados. Un mismo incidente puede requerir varias movilizaciones, y el despliegue depende de sus características: un incendio de gran magnitud exige más unidades que una intervención menor. La LFB valoriza este esfuerzo en un costo nocional, calculado según el tiempo de los vehículos participantes y una tarifa estándar (LFB, 2022). Este valor describe el costo estimado de la atención y no equivale a un ahorro que pueda recuperarse automáticamente.
 
 Dentro de esta demanda, las falsas alarmas merecen atención específica. Son avisos atendidos como posibles incendios en los que se comprueba que no existía ni había existido el incendio reportado (MHCLG, 2025). Aun así, consumen movilizaciones y tiempo de bomberos: en el año previo a su consulta de 2023, las alarmas automáticas en inmuebles no residenciales ocuparon cerca de 23.500 horas (LFB, 2023). En 2025, las alarmas automáticas representaron alrededor del 34 % de los incidentes atendidos, y menos del 1 % de las procedentes de inmuebles no residenciales terminó registrado como incendio (LFB, s.f.-b). Las falsas alarmas automáticas son una parte del conjunto de falsas alarmas; una activación automática no se clasifica necesariamente como falsa alarma. Por eso, conviene identificar en qué zonas y tipos de inmueble se concentran, como base para investigar posteriormente qué las provoca y, según lo que se encuentre, orientar posibles acciones preventivas. Como referencia, la propia LFB ya recomienda a los responsables de los edificios contar con sistemas adecuados a su uso, mantenerlos y aplicar medidas para filtrar falsas alarmas (LFB, s.f.-a).
 
-En consecuencia, el proyecto estudia la atención de incidentes de la LFB durante 2025 desde sus tiempos de respuesta y los recursos asociados. La comparación por territorio y tipo de incidente permitirá identificar qué zonas y atenciones merecen una revisión operativa y dónde conviene investigar las causas de las falsas alarmas. Para ello, la LFB publica en el London Datastore registros abiertos de cada incidente y de cada autobomba movilizada, con información de tiempo, lugar, tipo de atención y recursos, que permiten comparar las atenciones por zona y tipo de incidente (LFB, 2026a, 2026b).
+Por ello, analizaremos las atenciones de LFB durante 2025 para identificar qué zonas y tipos de incidentes requieren una revisión operativa y dónde se concentran falsas alarmas que conviene investigar. Utilizaremos los registros de incidentes y movilizaciones publicados en London Datastore, que contienen información sobre tiempos, ubicación, tipo de atención y recursos empleados (LFB, 2026a, 2026b).
 
 ## 2. Planteamiento de la problemática
 
@@ -31,11 +31,11 @@ En consecuencia, el proyecto estudia la atención de incidentes de la LFB durant
 
 La London Fire Brigade responde a una demanda compuesta por incendios, servicios especiales y falsas alarmas, distribuida entre los distintos boroughs de Londres. Cada atención presenta características que influyen en la respuesta requerida y en los recursos utilizados. Por ello, evaluar el servicio exige considerar conjuntamente qué tipo de incidente se atiende, cuánto tardan los recursos en llegar y qué despliegue queda asociado a esa atención.
 
-El problema de gestión consiste en determinar qué zonas y tipos de atención conviene revisar primero. Una meta promedio para todo Londres no describe las diferencias entre territorios, horarios y clases de incidente, ni muestra qué movilizaciones, minutos de autobomba y costo nocional corresponden a cada grupo de atenciones. El proyecto analizará conjuntamente estas diferencias para apoyar la identificación de zonas y tipos de atención que requieren una revisión prioritaria.
+El problema de gestión consiste en determinar qué zonas y tipos de atención conviene revisar primero. Una meta promedio para todo Londres no describe las diferencias entre territorios, horarios y clases de incidente, ni muestra qué movilizaciones, minutos de autobomba y costo nocional corresponden a cada grupo de atenciones. Analizaremos estas diferencias para fundamentar qué zonas y tipos de atención deberían revisarse primero.
 
-En la respuesta operativa, el análisis examinará los tiempos de salida, viaje y llegada, los motivos de demora reportados, como el tráfico o las obras viales, y la estación desde la que salió cada recurso. En los recursos, examinará las movilizaciones, las autobombas asistentes, los minutos de autobomba publicados con redondeo y el costo nocional de esas mismas atenciones. Para que las diferencias sean interpretables, se compararán incidentes de características semejantes, ya que un mayor tiempo o costo en un incendio complejo puede responder a las exigencias de la emergencia.
+Compararemos los tiempos de salida, viaje y llegada, los motivos de demora reportados y la estación desde la que salió cada recurso. Para esas mismas atenciones, revisaremos las movilizaciones, las autobombas asistentes, los minutos de autobomba y el costo nocional. Compararemos incidentes de características semejantes, porque una emergencia compleja puede requerir más tiempo y recursos que una intervención menor.
 
-Dentro de esta comparación, las falsas alarmas constituyen un tipo de atención específico. Identificar en qué zonas y tipos de inmueble generan más atenciones y movilizaciones permitirá orientar la investigación de sus posibles causas y, según los resultados, evaluar acciones preventivas. Así, el análisis apoyará dos decisiones dentro del mismo proceso: dónde examinar dificultades de respuesta y dónde investigar concentraciones de falsas alarmas.
+También examinaremos en qué zonas y tipos de inmueble se concentran las falsas alarmas y qué recursos se utilizan para atenderlas. Con ello buscamos identificar dónde conviene investigar sus causas y orientar acciones preventivas, junto con la revisión de los tiempos de respuesta del servicio.
 
 ### 2.2. Pregunta central de negocio
 
@@ -81,57 +81,51 @@ London Fire Brigade (LFB) es el servicio de bomberos y rescate de Londres. Combi
 | Etapa del proceso general | Relación con el proyecto |
 |---|---|
 | Recepción del aviso | Fecha, hora, lugar y clasificación publicada permiten describir la demanda. |
-| Movilización de unidades | Se identifica cada recurso movilizado y la estación y el contexto de salida publicados. |
-| Salida, desplazamiento y llegada | Se estudian los tiempos en segundos y los motivos de demora reportados. |
-| Intervención | Se describen las autobombas asistentes, los minutos publicados con redondeo y el costo nocional del incidente. |
+| Movilización de unidades | Identificaremos cada recurso movilizado, la estación y el origen de su despliegue. |
+| Salida, desplazamiento y llegada | Compararemos los tiempos en segundos y los motivos de demora reportados. |
+| Intervención | Examinaremos las autobombas asistentes, los minutos publicados con redondeo y el costo nocional del incidente. |
 | Retorno de unidades | Forma parte del proceso general, pero queda fuera del análisis de duración y disponibilidad por insuficiencia del campo de retorno. |
 
 ### 3.3. Usuarios previstos
 
-El análisis está orientado a las áreas de operaciones, planificación y prevención de LFB.
+Orientamos el análisis a las decisiones de las áreas de operaciones, planificación y prevención de LFB.
 
-| Usuario propuesto | Decisión apoyada |
+| Área | Decisión |
 |---|---|
 | Operaciones y planificación | Seleccionar zonas y tipos de atención en los que conviene examinar tiempos de llegada y demoras reportadas. |
 | Prevención | Identificar concentraciones de falsas alarmas por zona y tipo de inmueble para investigar sus posibles causas. |
 
-### 3.4. Contexto de respuesta a alarmas automáticas
+### 3.4. Fuentes de datos
 
-Desde el 29 de octubre de 2024, LFB aplica una política de respuesta diferenciada a determinadas alarmas automáticas en edificios comerciales: entre las 07:00 y las 20:30, hora de Londres, requiere confirmación de incendio, salvo edificios exentos. Entre las excepciones figuran viviendas, hospitales, hoteles y escuelas. Continúa atendiendo incendios reportados a cualquier hora. [Política](https://www.london-fire.gov.uk/safety/the-workplace/automatic-fire-alarms/afa-policy/) y [preguntas oficiales](https://www.london-fire.gov.uk/safety/the-workplace/automatic-fire-alarms/afa-policy/afa-faqs/).
+Utilizaremos los registros abiertos oficiales de [incidentes](https://data.london.gov.uk/dataset/london-fire-brigade-incident-records-em8xy) y [movilizaciones](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65), publicados por LFB en London Datastore. Trabajaremos con la descarga del 24 de septiembre de 2026 y seleccionaremos el año 2025, que está completo en ambos archivos.
 
-Esta política debe considerarse al comparar las alarmas automáticas atendidas en 2025 por horario y tipo de inmueble. Los registros corresponden a incidentes atendidos; no incluyen los avisos que no generaron movilización. Las agrupaciones por hora del modelo no distinguen el límite exacto de las 20:30.
-
-### 3.5. Fuentes disponibles
-
-Se utilizarán los registros abiertos oficiales de [incidentes](https://data.london.gov.uk/dataset/london-fire-brigade-incident-records-em8xy) y [movilizaciones](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65), publicados por LFB en London Datastore. Son datos operativos reales. Se conserva la descarga completa del 24 de septiembre de 2026 y se define como periodo de análisis el año calendario 2025, disponible completo en ambas fuentes recientes.
-
-La fuente de incidentes describe cada atención y su contexto; la de movilizaciones describe los recursos desplegados. IncidentNumber permite relacionarlas durante la preparación. El estudio utiliza únicamente los registros de 2025.
+La fuente de incidentes describe cada atención; la de movilizaciones, cada recurso desplegado. Las relacionaremos mediante IncidentNumber.
 
 ## 4. Marco teórico
 
 ### 4.1. Business Intelligence como apoyo a la gestión
 
-Business Intelligence reúne y organiza datos para apoyar la toma de decisiones. En este proyecto se aplica al análisis de los tiempos de respuesta y los recursos utilizados por LFB, con comparaciones por zona y tipo de incidente.
+Business Intelligence reúne y organiza datos para apoyar la toma de decisiones. Aplicaremos este enfoque para comparar los tiempos de respuesta y los recursos utilizados por LFB según la zona y el tipo de incidente.
 
 El diseño dimensional sigue cuatro pasos: seleccionar el proceso, definir el grano, identificar las dimensiones y establecer las medidas ([Kimball Group, proceso de diseño](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)).
 
 ### 4.2. Proceso, hechos y nivel de detalle
 
-El proceso estudiado es la atención operativa de incidentes, observada mediante los registros de incidentes y de movilizaciones. Un **hecho** representa un evento medible de ese proceso. El **nivel de detalle o grano** establece qué significa una fila. Aquí existen dos: el incidente atendido y la movilización de un recurso hacia ese incidente. Un incidente puede requerir varios recursos; por eso no deben contarse como si fueran lo mismo.
+Estudiaremos la atención operativa de incidentes mediante los registros de incidentes y movilizaciones. Un **hecho** representa un evento medible de ese proceso. El **nivel de detalle o grano** establece qué significa una fila. Aquí existen dos: el incidente atendido y la movilización de un recurso hacia ese incidente. Un incidente puede requerir varios recursos; por eso no deben contarse como si fueran lo mismo.
 
-Se propone conservar ambos niveles en tablas distintas. El incidente permite estudiar la demanda y su clasificación final; la movilización permite describir los recursos desplegados y el contexto de su desplazamiento. Las falsas alarmas se analizan como una categoría del incidente, no como un proceso con un grano diferente. Las comparaciones que combinan ambos hechos utilizarán el mismo conjunto de incidentes enlazados, identificado mediante controles de cobertura. El costo nocional del incidente permanece una sola vez, aunque hayan participado varios recursos. Cada grano requiere su propia tabla de hechos; las medidas deben corresponder al evento representado por la fila ([Kimball Group, grano](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/grain/)).
+Definimos una tabla de hechos para cada nivel de detalle. El incidente permite estudiar la demanda y su clasificación final; la movilización permite describir los recursos desplegados y el contexto de su desplazamiento. Las falsas alarmas se analizan como una categoría del incidente, no como un proceso con un grano diferente. Para comparar medidas de ambas tablas utilizaremos el mismo conjunto de incidentes enlazados. El costo nocional del incidente permanece una sola vez, aunque hayan participado varios recursos. Cada grano requiere su propia tabla de hechos; las medidas deben corresponder al evento representado por la fila ([Kimball Group, grano](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/grain/)).
 
 ### 4.3. Dimensiones y modelo multidimensional
 
-Las dimensiones describen un hecho desde distintas perspectivas: cuándo ocurrió, dónde, qué tipo de incidente fue y qué clase de inmueble estuvo involucrada. En el despliegue se añaden estación, origen del recurso y motivo de demora reportado. Estas perspectivas permiten comparar segmentos de gestión sin perder el significado de cada evento.
+Las dimensiones describen un hecho desde distintas perspectivas: cuándo ocurrió, dónde, qué tipo de incidente fue y qué clase de inmueble estuvo involucrada. En el despliegue se añaden estación, origen del recurso y motivo de demora reportado.
 
-El modelo estrella relaciona una tabla de hechos con dimensiones descriptivas. Al compartir dimensiones entre dos hechos se forma una constelación de estrellas. Este diseño se adapta al proceso: las dimensiones comunes relacionan la demanda con el despliegue, mientras las propias de movilización describen su ejecución. La propuesta incorpora ocho dimensiones. Fecha, hora, tipo de incidente, tipo de propiedad y geografía serán conformadas: tendrán el mismo significado y las mismas claves en ambos hechos. Esto permite agregar cada hecho por separado y comparar los resultados en los mismos grupos ([Kimball Group, dimensiones conformadas](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/conformed-dimension/)).
+El modelo estrella relaciona una tabla de hechos con dimensiones descriptivas. Al compartir dimensiones entre dos hechos se forma una constelación de estrellas. Este diseño se adapta al proceso: las dimensiones comunes relacionan la demanda con el despliegue, mientras las propias de movilización describen su ejecución. En nuestro modelo definimos ocho dimensiones. Fecha, hora, tipo de incidente, tipo de propiedad y geografía serán conformadas: tendrán el mismo significado y las mismas claves en ambos hechos. Esto permite agregar cada hecho por separado y comparar los resultados en los mismos grupos ([Kimball Group, dimensiones conformadas](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/conformed-dimension/)).
 
 ### 4.4. Datamart y análisis multidimensional
 
 Un datamart organiza información de un ámbito de la institución. El alcance aquí es la atención de incidentes durante 2025, con dos perspectivas relacionadas: tiempos de respuesta y recursos utilizados. Los incendios, falsas alarmas y servicios especiales se distinguen para comparar atenciones de características semejantes.
 
-OLTP se orienta al registro de transacciones y OLAP a su análisis desde distintas perspectivas. En el modelo propuesto será posible examinar un año por meses, un borough por wards y una categoría de propiedad por tipos específicos. Estos niveles forman las jerarquías de análisis.
+OLTP se orienta al registro de transacciones y OLAP a su análisis desde distintas perspectivas. Usaremos estas jerarquías para examinar un año por meses, un borough por wards y una categoría de propiedad por tipos específicos. Estos niveles forman las jerarquías de análisis.
 
 ### 4.5. Integración y significado de los datos
 
@@ -182,7 +176,7 @@ Los valores ausentes se distinguen de cero y de categorías explícitas como Not
 
 ### 6.1. Tablas de hechos
 
-El modelo tiene dos tablas de hechos: una registra cada incidente y la otra, cada movilización. Un incidente puede requerir varias unidades, por lo que sus recursos y costos deben distinguirse de los tiempos de cada unidad movilizada.
+Diseñamos el modelo con dos tablas de hechos: una para cada incidente y otra para cada movilización. Un incidente puede requerir varias unidades, por lo que sus recursos y costos deben distinguirse de los tiempos de cada unidad movilizada.
 
 | Tabla de hechos | Qué representa una fila | Qué permite analizar |
 |---|---|---|
@@ -232,11 +226,11 @@ El costo y las llamadas se agregan únicamente desde FactIncidente. Sumar NumBom
 
 - Incidente: grupo → clasificación. Servicio especial solo aporta detalle cuando corresponde.
 
-- Hora: franja → hora. Las franjas son agrupaciones académicas y no turnos oficiales de LFB.
+- Hora: franja → hora. Definimos las franjas para el análisis; no representan turnos oficiales de LFB.
 
 ### 6.6. Preparación de los datos
 
-Las copias idénticas de movilizaciones se deduplicarán y los identificadores con versiones contradictorias se revisarán antes de cargar. Los valores desconocidos permanecerán distinguibles de las categorías reales. Las dimensiones comunes de la movilización procederán del incidente enlazado. No se duplicarán medidas del incidente al integrar recursos.
+Eliminaremos las copias idénticas de movilizaciones y separaremos los identificadores con versiones contradictorias para revisarlos antes de la carga. Mantendremos los valores desconocidos separados de las categorías registradas. Obtendremos las dimensiones compartidas del incidente enlazado, sin repetir sus medidas por cada recurso movilizado.
 
 ### 6.7. Agregación y comparación entre hechos
 
@@ -250,7 +244,7 @@ Las copias idénticas de movilizaciones se deduplicarán y los identificadores c
 | SalidaSeg, ViajeSeg y LlegadaSeg | Promedio, mediana o distribución sobre movilizaciones con valor informado. No sumar los tres campos como si fueran etapas independientes. |
 | NumLlamadas | Suma a nivel incidente; no equivale al número de incidentes. |
 
-Para combinar información por borough y tipo de incidente se agregará cada hecho por separado y luego se alinearán sus resultados por las dimensiones compartidas. No se promediarán promedios de subgrupos sin ponderar por su número de valores válidos. La cantidad de observaciones y de datos ausentes acompañará las comparaciones de tiempos.
+Agregaremos cada tabla de hechos por separado y compararemos sus resultados por las dimensiones compartidas. Si combinamos promedios de subgrupos, los ponderaremos por su cantidad de valores válidos. En las comparaciones de tiempos indicaremos también cuántas observaciones tienen datos y cuántas presentan valores ausentes.
 
 FechaKey y HoraKey de FactMovilizacion corresponden a la fecha y hora de llamada del incidente enlazado, para mantener coherencia con FactIncidente; FechaHoraMovilizada conserva la marca de movilización como atributo independiente. Cuando el incidente no pueda enlazarse, las cinco claves compartidas tendrán valor 0 y TieneIncidente=0. La estación, el origen y el motivo de demora se conservarán desde la movilización.
 
@@ -311,7 +305,7 @@ Hora de llamada publicada; no equivale a la hora de movilización.
 |---|---|---|---|
 | HoraKey | int | PK | HourOfCall + 1; 1–24 representan 0–23; 0 desconocido. |
 | Hora | tinyint | Atributo | HourOfCall, 0–23. |
-| Franja | nvarchar(30) | Atributo | Agrupación académica: madrugada 0–5, mañana 6–11, tarde 12–17, noche 18–23; no son turnos oficiales. |
+| Franja | nvarchar(30) | Atributo | Agrupación horaria: madrugada 0–5, mañana 6–11, tarde 12–17, noche 18–23; no son turnos oficiales. |
 
 #### DimTipoIncidente
 
@@ -425,17 +419,15 @@ Una fila por ResourceMobilisationId de CalYear=2025 aceptado tras deduplicar y s
 
 Todas las FK son obligatorias y usan la fila 0 cuando corresponde. Las medidas desconocidas permanecen NULL; nunca se convierten a 0 por conveniencia. Las dimensiones con claves sustitutas reservan explícitamente el miembro 0. Para Fecha y Hora se generan claves deterministas. Se mantiene un calendario completo para representar todos los días del periodo, incluso aquellos sin registros.
 
-Las dimensiones descriptivas se desnormalizan. En este corte congelado se plantea actualización tipo 1 para correcciones de etiquetas, manteniendo los originales y bitácoras de carga. Una futura comparación histórica deberá evaluar historial de cambios tipo 2 y cambios de límites territoriales. No se cuenta dos veces una dimensión por asumir varios roles.
+Usaremos dimensiones desnormalizadas y actualizaciones tipo 1 para corregir etiquetas. Conservaremos los archivos originales y el registro de los cambios realizados durante la carga.
 
-Las longitudes propuestas son conservadoras; validar cualquier nueva descarga antes de cargar y rechazar truncamientos. Usar búsquedas de combinación completa para dimensiones compuestas y código para estación/demora. Si un código presenta dos nombres en la misma extracción, resolver en staging antes del lookup, sin elegir arbitrariamente.
+Antes de cargar los datos verificaremos que las longitudes definidas admitan los valores de la fuente. Buscaremos las claves por la combinación completa de atributos de cada dimensión y por código en estación y demora. Si un código tiene dos nombres en la misma descarga, revisaremos el conflicto antes de asignar la clave.
 
 #### Reglas de enlace y tiempo
 
 En FactMovilizacion, las cinco claves compartidas se obtienen del incidente enlazado por IncidentNumber. FechaKey y HoraKey representan el contexto de llamada; FechaHoraMovilizada conserva la marca GMT de movilización. Si no existe enlace, las cinco claves compartidas son 0 y TieneIncidente=0. Las tres dimensiones propias se obtienen de la movilización. Una marca GMT no se combina con una hora local sin verificar antes las convenciones de la fuente.
 
 PerformanceReporting se conserva como categoría publicada, no como cantidad. El ejemplo oficial 1 corresponde al primer recurso que llega; el campo no sustituye la documentación completa del universo usado en reportes de desempeño.
-
-DimHora conserva las horas publicadas y agrupaciones descriptivas. No representa la política de alarmas automáticas de 07:00–20:30: el límite de media hora requiere información y validación adicionales. Ese análisis de cumplimiento no forma parte del alcance.
 
 [Modelo y reglas de agregación](docs/05_Modelo_multidimensional/Modelo_multidimensional.md) · [Diccionario de fuentes](docs/04_Diccionario_datos/Diccionario_fuentes.md).
 
@@ -487,15 +479,13 @@ Kimball Group. (s.f.). Conformed dimensions. [Enlace a la fuente](https://www.ki
 
 London Fire Brigade. (2023). Your London Fire Brigade: Our plan for 2023–29. [Enlace a la fuente](https://www.london-fire.gov.uk/about-us/your-london-fire-brigade-our-plan-for-2023-29/)
 
-London Fire Brigade. (s.f.). AFA exemptions: FAQs. Recuperado el 25 de septiembre de 2026 de [Enlace a la fuente](https://www.london-fire.gov.uk/safety/the-workplace/automatic-fire-alarms/afa-policy/afa-faqs/)
-
 Kimball Group. (s.f.). Multipass SQL to avoid fact-to-fact table joins. [Enlace a la fuente](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/multipass-sql/).
 
 ### Datos y trazabilidad de la descarga
 
 Las [instrucciones de descarga](data/README.md) permiten acceder a los archivos oficiales completos. El [manifest de descargas](data/manifest_descargas.json) registra las URL, los tamaños, las fechas y los hashes SHA-256 de las copias descargadas por el grupo. Los datos grandes se conservan localmente; las rutas del manifest indican dónde guardarlos dentro de este repositorio. Los dos diccionarios oficiales se incluyen en docs/04_Diccionario_datos/metadatos/. Los archivos históricos son respaldo; el análisis se delimita a 2025.
 
-Las cifras institucionales citadas en la introducción proceden de publicaciones con sus propios cortes de información. No se presentan como resultados calculados sobre la descarga del grupo ni se exige que coincidan con una descarga posterior.
+Las cifras citadas en la introducción corresponden a las publicaciones indicadas en las referencias y pueden diferir de los archivos descargados por sus fechas de actualización.
 
 Source: London Fire Brigade / London Datastore. Contains public sector information licensed under the [Open Government Licence v2.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/).
 

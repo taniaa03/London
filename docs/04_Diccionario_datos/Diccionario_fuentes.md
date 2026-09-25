@@ -108,4 +108,4 @@ Se filtra primero IncidentGroup=False Alarm y después se utiliza StopCodeDescri
 | False alarm - Malicious | Aviso deliberado de un incidente inexistente. |
 | Alleged Fire Risk | Etiqueta publicada que se conserva; el diccionario no aporta detalle suficiente para atribuirle una causa específica. |
 
-Los campos documentan la clasificación final, no el protocolo de comprobación aplicado por los bomberos ni una descripción libre de la investigación. Las categorías generales de buena fe y aviso malicioso se interpretan según las [definiciones oficiales](https://www.gov.uk/government/statistics/fire-and-rescue-incident-statistics-year-ending-march-2025/fire-and-rescue-incident-statistics-year-ending-march-2025). No se deduce falta de mantenimiento, humo de cocina u otra causa concreta a partir de AFA.
+Las categorías generales de buena fe y aviso malicioso se interpretan según las [definiciones oficiales](https://www.gov.uk/government/statistics/fire-and-rescue-incident-statistics-year-ending-march-2025/fire-and-rescue-incident-statistics-year-ending-march-2025).

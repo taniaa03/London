@@ -1,6 +1,6 @@
 # Datos oficiales del proyecto
 
-El estudio usa los registros reales de London Fire Brigade publicados en London Datastore. El periodo de análisis es del 1 de enero al 31 de diciembre de **2025**. Los archivos originales incluyen otros años; conservar el original y filtrar `CalYear=2025` en ambas fuentes al preparar el análisis.
+Trabajaremos con los registros de London Fire Brigade publicados en London Datastore. El periodo de análisis es del 1 de enero al 31 de diciembre de **2025**. Los archivos originales incluyen otros años; conservar el original y filtrar `CalYear=2025` en ambas fuentes al preparar el análisis.
 
 ## Archivos para el estudio
 

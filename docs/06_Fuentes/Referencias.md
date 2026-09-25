@@ -32,15 +32,13 @@ Kimball Group. (s.f.). Conformed dimensions. [Enlace a la fuente](https://www.ki
 
 London Fire Brigade. (2023). Your London Fire Brigade: Our plan for 2023–29. [Enlace a la fuente](https://www.london-fire.gov.uk/about-us/your-london-fire-brigade-our-plan-for-2023-29/)
 
-London Fire Brigade. (s.f.). AFA exemptions: FAQs. Recuperado el 25 de septiembre de 2026 de [Enlace a la fuente](https://www.london-fire.gov.uk/safety/the-workplace/automatic-fire-alarms/afa-policy/afa-faqs/)
-
 Kimball Group. (s.f.). Multipass SQL to avoid fact-to-fact table joins. [Enlace a la fuente](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/multipass-sql/).
 
 ## Datos y trazabilidad de la descarga
 
 Las [instrucciones de descarga](../../data/README.md) permiten acceder a los archivos oficiales completos. El [manifest de descargas](../../data/manifest_descargas.json) registra las URL, los tamaños, las fechas y los hashes SHA-256 de las copias descargadas por el grupo. Los datos grandes se conservan localmente; las rutas del manifest indican dónde guardarlos dentro de este repositorio. Los dos diccionarios oficiales se incluyen en docs/04_Diccionario_datos/metadatos/. Los archivos históricos son respaldo; el análisis se delimita a 2025.
 
-Las cifras institucionales citadas en la introducción proceden de publicaciones con sus propios cortes de información. No se presentan como resultados calculados sobre la descarga del grupo ni se exige que coincidan con una descarga posterior.
+Las cifras citadas en la introducción corresponden a las publicaciones indicadas en las referencias y pueden diferir de los archivos descargados por sus fechas de actualización.
 
 Source: London Fire Brigade / London Datastore. Contains public sector information licensed under the [Open Government Licence v2.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/).
 

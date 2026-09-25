@@ -2,7 +2,7 @@
 
 ## 6.1. Tablas de hechos
 
-El modelo tiene dos tablas de hechos: una registra cada incidente y la otra, cada movilización. Un incidente puede requerir varias unidades, por lo que sus recursos y costos deben distinguirse de los tiempos de cada unidad movilizada.
+Diseñamos el modelo con dos tablas de hechos: una para cada incidente y otra para cada movilización. Un incidente puede requerir varias unidades, por lo que sus recursos y costos deben distinguirse de los tiempos de cada unidad movilizada.
 
 | Tabla de hechos | Qué representa una fila | Qué permite analizar |
 |---|---|---|
@@ -52,11 +52,11 @@ El costo y las llamadas se agregan únicamente desde FactIncidente. Sumar NumBom
 
 - Incidente: grupo → clasificación. Servicio especial solo aporta detalle cuando corresponde.
 
-- Hora: franja → hora. Las franjas son agrupaciones académicas y no turnos oficiales de LFB.
+- Hora: franja → hora. Definimos las franjas para el análisis; no representan turnos oficiales de LFB.
 
 ## 6.6. Preparación de los datos
 
-Las copias idénticas de movilizaciones se deduplicarán y los identificadores con versiones contradictorias se revisarán antes de cargar. Los valores desconocidos permanecerán distinguibles de las categorías reales. Las dimensiones comunes de la movilización procederán del incidente enlazado. No se duplicarán medidas del incidente al integrar recursos.
+Eliminaremos las copias idénticas de movilizaciones y separaremos los identificadores con versiones contradictorias para revisarlos antes de la carga. Mantendremos los valores desconocidos separados de las categorías registradas. Obtendremos las dimensiones compartidas del incidente enlazado, sin repetir sus medidas por cada recurso movilizado.
 
 ## 6.7. Agregación y comparación entre hechos
 
@@ -70,7 +70,7 @@ Las copias idénticas de movilizaciones se deduplicarán y los identificadores c
 | SalidaSeg, ViajeSeg y LlegadaSeg | Promedio, mediana o distribución sobre movilizaciones con valor informado. No sumar los tres campos como si fueran etapas independientes. |
 | NumLlamadas | Suma a nivel incidente; no equivale al número de incidentes. |
 
-Para combinar información por borough y tipo de incidente se agregará cada hecho por separado y luego se alinearán sus resultados por las dimensiones compartidas. No se promediarán promedios de subgrupos sin ponderar por su número de valores válidos. La cantidad de observaciones y de datos ausentes acompañará las comparaciones de tiempos.
+Agregaremos cada tabla de hechos por separado y compararemos sus resultados por las dimensiones compartidas. Si combinamos promedios de subgrupos, los ponderaremos por su cantidad de valores válidos. En las comparaciones de tiempos indicaremos también cuántas observaciones tienen datos y cuántas presentan valores ausentes.
 
 FechaKey y HoraKey de FactMovilizacion corresponden a la fecha y hora de llamada del incidente enlazado, para mantener coherencia con FactIncidente; FechaHoraMovilizada conserva la marca de movilización como atributo independiente. Cuando el incidente no pueda enlazarse, las cinco claves compartidas tendrán valor 0 y TieneIncidente=0. La estación, el origen y el motivo de demora se conservarán desde la movilización.
 
