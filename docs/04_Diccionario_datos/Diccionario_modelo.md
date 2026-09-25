@@ -1,6 +1,6 @@
 # Diccionario del modelo dimensional
 
-Especificación de primera entrega; tipos de datos de referencia para el diseño. No se incluye implementación SQL en este entregable. Cada campo utilizado queda definido a continuación.
+Tipos de datos, claves y reglas de transformación de los campos del modelo.
 
 ## DimFecha
 
@@ -151,7 +151,6 @@ PerformanceReporting se conserva como categoría publicada, no como cantidad. El
 DimHora conserva las horas publicadas y agrupaciones descriptivas. No representa la política de alarmas automáticas de 07:00–20:30: el límite de media hora requiere información y validación adicionales. Ese análisis de cumplimiento no forma parte del alcance.
 
 [Modelo y reglas de agregación](../05_Modelo_multidimensional/Modelo_multidimensional.md) · [Diccionario de fuentes](Diccionario_fuentes.md).
-
 
 ## Campos de origen conservados fuera del modelo analítico
 

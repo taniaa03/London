@@ -1,6 +1,6 @@
-# Primera entrega — índice
+# Documentos
 
-[Informe completo](../README.md). Orden sugerido de lectura:
+[Informe completo](../README.md).
 
 1. [Introducción](01_Introduccion_y_problema/Introduccion.md).
 
@@ -16,4 +16,4 @@
 
 7. [Referencias](06_Fuentes/Referencias.md).
 
-Los [datos oficiales y las instrucciones de descarga](../data/README.md) se documentan por separado.
+[Datos oficiales y descargas](../data/README.md).

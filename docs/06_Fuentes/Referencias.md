@@ -46,4 +46,4 @@ Source: London Fire Brigade / London Datastore. Contains public sector informati
 
 [Manifest de descarga](../../data/manifest_descargas.json) · [Enlaces directos](../../data/README.md).
 
-[Volver al informe principal](../../README.md) · [Índice de componentes](../README.md).
+[Volver al informe principal](../../README.md) · [Documentos](../README.md).

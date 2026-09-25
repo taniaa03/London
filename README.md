@@ -23,7 +23,7 @@ La segunda perspectiva examina los recursos empleados. Un mismo incidente puede 
 
 Dentro de esta demanda, las falsas alarmas merecen atención específica. Son avisos atendidos como posibles incendios en los que se comprueba que no existía ni había existido el incendio reportado (MHCLG, 2025). Aun así, consumen movilizaciones y tiempo de bomberos: en el año previo a su consulta de 2023, las alarmas automáticas en inmuebles no residenciales ocuparon cerca de 23.500 horas (LFB, 2023). En 2025, las alarmas automáticas representaron alrededor del 34 % de los incidentes atendidos, y menos del 1 % de las procedentes de inmuebles no residenciales terminó registrado como incendio (LFB, s.f.-b). Las falsas alarmas automáticas son una parte del conjunto de falsas alarmas; una activación automática no se clasifica necesariamente como falsa alarma. Por eso, conviene identificar en qué zonas y tipos de inmueble se concentran, como base para investigar posteriormente qué las provoca y, según lo que se encuentre, orientar posibles acciones preventivas. Como referencia, la propia LFB ya recomienda a los responsables de los edificios contar con sistemas adecuados a su uso, mantenerlos y aplicar medidas para filtrar falsas alarmas (LFB, s.f.-a).
 
-En consecuencia, el proyecto estudia la atención de incidentes de la LFB durante 2025 desde sus tiempos de respuesta y los recursos asociados. La comparación por territorio y tipo de incidente permitirá identificar qué zonas y atenciones merecen una revisión operativa y dónde conviene investigar las causas de las falsas alarmas. Para ello, la LFB publica en el London Datastore registros abiertos de cada incidente y de cada autobomba movilizada, con información de tiempo, lugar, tipo de atención y recursos, que permiten examinar el problema desde múltiples perspectivas cruzadas (LFB, 2026a, 2026b).
+En consecuencia, el proyecto estudia la atención de incidentes de la LFB durante 2025 desde sus tiempos de respuesta y los recursos asociados. La comparación por territorio y tipo de incidente permitirá identificar qué zonas y atenciones merecen una revisión operativa y dónde conviene investigar las causas de las falsas alarmas. Para ello, la LFB publica en el London Datastore registros abiertos de cada incidente y de cada autobomba movilizada, con información de tiempo, lugar, tipo de atención y recursos, que permiten comparar las atenciones por zona y tipo de incidente (LFB, 2026a, 2026b).
 
 ## 2. Planteamiento de la problemática
 
@@ -39,11 +39,11 @@ Dentro de esta comparación, las falsas alarmas constituyen un tipo de atención
 
 ### 2.2. Pregunta central de negocio
 
-> ¿Qué zonas y tipos de atención debería priorizar la London Fire Brigade para revisar su respuesta operativa y orientar acciones preventivas, considerando los tiempos de llegada, las demoras reportadas y los recursos utilizados durante 2025?
+¿Qué zonas y tipos de atención debería priorizar la London Fire Brigade para revisar su respuesta operativa y orientar acciones preventivas, considerando los tiempos de llegada, las demoras reportadas y los recursos utilizados durante 2025?
 
 ### 2.3. Objetivos
 
-**Objetivo general del proyecto:** analizar la atención de incidentes de LFB durante 2025, considerando los tiempos de llegada, las demoras reportadas y los recursos utilizados, para fundamentar qué zonas y tipos de atención deberían priorizarse para revisión operativa y orientación de acciones preventivas.
+**Objetivo general:** analizar la atención de incidentes de LFB durante 2025, considerando los tiempos de llegada, las demoras reportadas y los recursos utilizados, para fundamentar qué zonas y tipos de atención deberían priorizarse para revisión operativa y orientación de acciones preventivas.
 
 **Objetivos específicos:**
 
@@ -57,9 +57,7 @@ Dentro de esta comparación, las falsas alarmas constituyen un tipo de atención
 
 5. Integrar esas comparaciones para sustentar la selección de zonas y tipos de atención que requieren revisión.
 
-### 2.4. Alcance de la primera entrega
-
-Esta primera entrega presenta la institución, desarrolla el marco teórico y plantea el problema que orientará el proyecto. También documenta las variables disponibles y propone el modelo multidimensional para estudiar las atenciones realizadas durante 2025. La determinación de zonas prioritarias y las propuestas sustentadas en resultados corresponden al análisis posterior.
+### 2.4. Alcance del estudio
 
 | Aspecto | Delimitación |
 |---|---|
@@ -72,70 +70,50 @@ Esta primera entrega presenta la institución, desarrolla el marco teórico y pl
 | Nivel de detalle | Un incidente y una movilización, conservados en hechos distintos. |
 | Decisión | Dónde concentrar la revisión operativa y dónde investigar posibles causas de falsas alarmas. |
 
-La ubicación y el tipo de atención organizan la comparación. Los tiempos describen la respuesta; los recursos describen el esfuerzo asociado. Un mayor tiempo o costo no demuestra por sí solo ineficiencia. Los registros tampoco demuestran que una falsa alarma haya retrasado otra emergencia, que Other Station implique falta de unidades en la estación más cercana, ni que toda falsa alarma sea evitable. El costo nocional es una estimación y no un ahorro automáticamente recuperable.
-
-### 2.5. Correspondencia entre el problema y la información
-
-| Aspecto que se estudiará | Campos principales | Ubicación en el modelo |
-|---|---|---|
-| Zona y tipo de atención | IncGeo_BoroughName, IncGeo_WardName, IncidentGroup, StopCodeDescription | DimGeografia y DimTipoIncidente, compartidas por ambos hechos. |
-| Contexto temporal y del inmueble | DateOfCall, HourOfCall, PropertyCategory, PropertyType | DimFecha, DimHora y DimTipoPropiedad. |
-| Primera llegada al incidente | FirstPumpArriving_AttendanceTime | FactIncidente.PrimerArriboSeg. |
-| Tiempos de cada unidad | TurnoutTimeSeconds, TravelTimeSeconds, AttendanceTimeSeconds | FactMovilizacion.SalidaSeg, ViajeSeg y LlegadaSeg. |
-| Demoras reportadas y contexto de salida | DelayCodeId, DelayCode_Description, DeployedFromStation_Code, DeployedFromLocation | DimMotivoDemora, DimEstacion y DimOrigenDespliegue. |
-| Recursos de la atención | ResourceMobilisationId, NumPumpsAttending, PumpMinutesRounded, Notional Cost (£) | Conteo de movilizaciones y medidas de FactIncidente. |
-| Falsas alarmas | IncidentGroup=False Alarm y detalle en StopCodeDescription | Filtro por DimTipoIncidente; comparación por zona, propiedad y hora. |
-
-IncidentNumber permite vincular el incidente con sus movilizaciones durante la preparación. Las medidas del incidente permanecen una sola vez, aunque participen varias unidades. Se compararán resultados agregados por las dimensiones comunes, conservando el significado de ambos niveles de detalle.
-
 ## 3. Descripción de la institución
 
 ### 3.1. Institución y finalidad
 
-London Fire Brigade (LFB) es el servicio de bomberos y rescate de Londres. Combina la respuesta a incidentes con actividades de prevención y protección de la comunidad. Su plan 2023–2029 plantea reducir y responder al riesgo en Londres. El proyecto se ubica en ese ámbito de servicio público: estudiar la atención para apoyar decisiones sobre respuesta operativa y prevención. [Plan institucional de LFB](https://www.london-fire.gov.uk/about-us/your-london-fire-brigade-our-plan-for-2023-29/).
+London Fire Brigade (LFB) es el servicio de bomberos y rescate de Londres. Combina la respuesta a incidentes con actividades de prevención y protección de la comunidad. Su plan 2023–2029 plantea reducir y responder al riesgo en Londres. [Plan institucional de LFB](https://www.london-fire.gov.uk/about-us/your-london-fire-brigade-our-plan-for-2023-29/).
 
-### 3.2. Proceso de atención y alcance del estudio
+### 3.2. Proceso de atención
 
 | Etapa del proceso general | Relación con el proyecto |
 |---|---|
-| Recepción del aviso | Fecha, hora, lugar y clasificación publicada permiten describir la demanda. No se evaluará el desempeño del centro de llamadas. |
+| Recepción del aviso | Fecha, hora, lugar y clasificación publicada permiten describir la demanda. |
 | Movilización de unidades | Se identifica cada recurso movilizado y la estación y el contexto de salida publicados. |
 | Salida, desplazamiento y llegada | Se estudian los tiempos en segundos y los motivos de demora reportados. |
 | Intervención | Se describen las autobombas asistentes, los minutos publicados con redondeo y el costo nocional del incidente. |
 | Retorno de unidades | Forma parte del proceso general, pero queda fuera del análisis de duración y disponibilidad por insuficiencia del campo de retorno. |
 
-Los registros publicados describen el incidente y sus movilizaciones. La clasificación final permite distinguir incendios, falsas alarmas y servicios especiales. Las acciones preventivas son una posible decisión posterior al análisis de estas atenciones. Esta representación no pretende reproducir todas las reglas internas de despacho.
+### 3.3. Usuarios previstos
 
-### 3.3. Usuarios y decisiones que se busca apoyar
-
-Los usuarios propuestos son responsables de operaciones, planificación y prevención de LFB. El diseño académico busca aportar una lectura conjunta de los tiempos y los recursos por zona y tipo de atención. No se han realizado entrevistas institucionales ni se presenta esta propuesta como un encargo de LFB.
+El análisis está orientado a las áreas de operaciones, planificación y prevención de LFB.
 
 | Usuario propuesto | Decisión apoyada |
 |---|---|
 | Operaciones y planificación | Seleccionar zonas y tipos de atención en los que conviene examinar tiempos de llegada y demoras reportadas. |
 | Prevención | Identificar concentraciones de falsas alarmas por zona y tipo de inmueble para investigar sus posibles causas. |
 
-Los responsables de los inmuebles podrían participar en una investigación preventiva posterior. Los registros no permiten determinar por sí solos qué mantenimiento o intervención concreta corresponde realizar.
-
 ### 3.4. Contexto de respuesta a alarmas automáticas
 
 Desde el 29 de octubre de 2024, LFB aplica una política de respuesta diferenciada a determinadas alarmas automáticas en edificios comerciales: entre las 07:00 y las 20:30, hora de Londres, requiere confirmación de incendio, salvo edificios exentos. Entre las excepciones figuran viviendas, hospitales, hoteles y escuelas. Continúa atendiendo incendios reportados a cualquier hora. [Política](https://www.london-fire.gov.uk/safety/the-workplace/automatic-fire-alarms/afa-policy/) y [preguntas oficiales](https://www.london-fire.gov.uk/safety/the-workplace/automatic-fire-alarms/afa-policy/afa-faqs/).
 
-Este antecedente ayuda a interpretar las falsas alarmas atendidas durante 2025 según horario y tipo de inmueble. La política se refiere a avisos automáticos y no a todos los tipos de falsa alarma. El proyecto no evaluará su efecto causal ni estimará avisos sin movilización o ahorros generados por ella. La franja de DimHora es descriptiva: por sí sola no permite distinguir el límite exacto de las 20:30.
+Esta política debe considerarse al comparar las alarmas automáticas atendidas en 2025 por horario y tipo de inmueble. Los registros corresponden a incidentes atendidos; no incluyen los avisos que no generaron movilización. Las agrupaciones por hora del modelo no distinguen el límite exacto de las 20:30.
 
 ### 3.5. Fuentes disponibles
 
 Se utilizarán los registros abiertos oficiales de [incidentes](https://data.london.gov.uk/dataset/london-fire-brigade-incident-records-em8xy) y [movilizaciones](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65), publicados por LFB en London Datastore. Son datos operativos reales. Se conserva la descarga completa del 24 de septiembre de 2026 y se define como periodo de análisis el año calendario 2025, disponible completo en ambas fuentes recientes.
 
-La fuente de incidentes describe cada atención y su contexto; la de movilizaciones describe los recursos desplegados. IncidentNumber permite relacionarlas durante la preparación. Los archivos históricos se mantienen como respaldo y no amplían el alcance temporal de esta entrega.
+La fuente de incidentes describe cada atención y su contexto; la de movilizaciones describe los recursos desplegados. IncidentNumber permite relacionarlas durante la preparación. El estudio utiliza únicamente los registros de 2025.
 
 ## 4. Marco teórico
 
 ### 4.1. Business Intelligence como apoyo a la gestión
 
-Business Intelligence permite organizar información para comprender un proceso y apoyar decisiones. Su valor depende de la pregunta de gestión que se busca resolver. En este trabajo, la decisión es **qué zonas y tipos de atención deberían revisarse primero por sus tiempos de respuesta y recursos asociados, y dónde convendría investigar las causas de una concentración de falsas alarmas**. Los registros de atención constituyen la evidencia para esa decisión.
+Business Intelligence reúne y organiza datos para apoyar la toma de decisiones. En este proyecto se aplica al análisis de los tiempos de respuesta y los recursos utilizados por LFB, con comparaciones por zona y tipo de incidente.
 
-La relación entre negocio y tecnología se plantea de esta manera: decisión de revisar la atención → comparación por territorio y tipo de incidente → identificación de tiempos y recursos asociados → modelo multidimensional. El diseño seguirá cuatro decisiones: seleccionar el proceso, declarar el grano, identificar las dimensiones y definir las medidas. Esta secuencia conecta la necesidad de gestión con los datos disponibles ([Kimball Group, proceso de diseño](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)).
+El diseño dimensional sigue cuatro pasos: seleccionar el proceso, definir el grano, identificar las dimensiones y establecer las medidas ([Kimball Group, proceso de diseño](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)).
 
 ### 4.2. Proceso, hechos y nivel de detalle
 
@@ -153,28 +131,13 @@ El modelo estrella relaciona una tabla de hechos con dimensiones descriptivas. A
 
 Un datamart organiza información de un ámbito de la institución. El alcance aquí es la atención de incidentes durante 2025, con dos perspectivas relacionadas: tiempos de respuesta y recursos utilizados. Los incendios, falsas alarmas y servicios especiales se distinguen para comparar atenciones de características semejantes.
 
-OLTP se orienta al registro de transacciones y OLAP a su análisis desde distintas perspectivas. En el modelo propuesto será posible examinar un año por meses, un borough por wards y una categoría de propiedad por tipos específicos. Son jerarquías de análisis, no tablas adicionales para aumentar artificialmente el número de dimensiones.
+OLTP se orienta al registro de transacciones y OLAP a su análisis desde distintas perspectivas. En el modelo propuesto será posible examinar un año por meses, un borough por wards y una categoría de propiedad por tipos específicos. Estos niveles forman las jerarquías de análisis.
 
 ### 4.5. Integración y significado de los datos
 
-La integración debe preservar qué representa cada campo. El proceso ETL —extracción, transformación y carga— permitirá relacionar incidentes y movilizaciones, uniformizar formatos y distinguir valores ausentes de valores reales. Su papel es asegurar que las futuras comparaciones sean confiables. En este avance se definen esas reglas; la implementación no forma parte de la entrega.
+El proceso ETL —extracción, transformación y carga— prepara los datos para el análisis. En este caso requiere relacionar incidentes y movilizaciones, uniformizar formatos, revisar duplicados y distinguir los valores ausentes de los valores registrados.
 
-La integración requiere conservar las fuentes, definir las relaciones entre registros y construir un calendario coherente. Los defectos de los archivos son aspectos técnicos que deben resolverse; **la decisión de gestión del proyecto es seleccionar zonas y tipos de atención para revisión operativa o investigación preventiva**.
-
-### 4.6. Aplicación de la teoría a la propuesta
-
-| Concepto | Aplicación en este trabajo |
-|---|---|
-| Decisión de gestión | Seleccionar zonas y tipos de atención para revisión operativa o investigación preventiva |
-| Proceso | Atención de incidentes y despliegue de recursos |
-| Grano | Un incidente / una movilización |
-| Hechos | FactIncidente y FactMovilizacion |
-| Dimensiones | Ocho perspectivas del evento y su despliegue |
-| Datamart | Atención de incidentes: tiempos de respuesta y recursos asociados por territorio y tipo de demanda |
-| Integración | Relación trazable mediante IncidentNumber, sin repetir costos |
-| Jerarquías | Año–trimestre–mes–día; borough–ward; categoría–tipo de propiedad |
-
-### 4.7. Conceptos operativos que orientan la interpretación
+### 4.6. Conceptos operativos
 
 | Concepto | Significado en el proyecto |
 |---|---|
@@ -191,7 +154,7 @@ Las definiciones de tiempos y costo se apoyan en los metadatos y en las aclaraci
 
 ## 5. Diccionario de datos
 
-El diccionario documenta los campos publicados y su correspondencia con el diseño. La fuente de incidentes contiene 39 campos y la de movilizaciones 24; sus nombres originales se conservan para permitir la trazabilidad.
+La fuente de incidentes contiene 39 campos y la de movilizaciones, 24. Los diccionarios conservan los nombres originales y describen su uso en el modelo.
 
 | Documento | Contenido |
 |---|---|
@@ -199,9 +162,7 @@ El diccionario documenta los campos publicados y su correspondencia con el dise�
 | [Diccionario de fuentes en CSV](docs/04_Diccionario_datos/Diccionario_fuentes.csv) | Versión tabular con las definiciones y notas originales del proveedor. |
 | [Diccionario del modelo](docs/04_Diccionario_datos/Diccionario_modelo.md) | Todos los campos de las ocho dimensiones y los dos hechos: tipo de dato, rol, definición y transformación. |
 
-Los campos de clasificación responden qué se atendió; los geográficos y temporales, dónde y cuándo; los tiempos y motivos de demora, cómo fue la llegada; y las medidas de despliegue y costo, qué recursos se asociaron a la atención.
-
-### 5.1. Distinciones necesarias para el análisis
+### 5.1. Definiciones de los campos principales
 
 - FirstPumpArriving_AttendanceTime corresponde a la primera autobomba que llegó al incidente. AttendanceTimeSeconds corresponde a una movilización. No son observaciones intercambiables.
 
@@ -219,20 +180,20 @@ Los valores ausentes se distinguen de cero y de categorías explícitas como Not
 
 ## 6. Modelo multidimensional
 
-### 6.1. Decisiones de diseño desde la pregunta de negocio
+### 6.1. Tablas de hechos
 
-La pregunta requiere estudiar la atención de un incidente y el despliegue de las unidades que participan. Son dos niveles de detalle del mismo proceso. Se proponen dos tablas de hechos porque una atención puede generar varias movilizaciones y cada nivel tiene medidas propias.
+El modelo tiene dos tablas de hechos: una registra cada incidente y la otra, cada movilización. Un incidente puede requerir varias unidades, por lo que sus recursos y costos deben distinguirse de los tiempos de cada unidad movilizada.
 
 | Tabla de hechos | Qué representa una fila | Qué permite analizar |
 |---|---|---|
 | FactIncidente | Un incidente publicado con CalYear=2025, identificado por IncidentNumber. | Demanda atendida, primera y segunda llegada publicadas, autobombas, estaciones participantes, minutos redondeados, llamadas y costo nocional de la atención. |
 | FactMovilizacion | Una movilización válida de un recurso con CalYear=2025, identificada por ResourceMobilisationId. | Tiempo de salida, viaje y llegada de cada unidad, estación de despliegue, contexto de salida y motivo de demora reportado. |
 
-Las falsas alarmas se identifican por DimTipoIncidente.Grupo=False Alarm. No necesitan una tercera tabla de hechos: tienen el mismo grano que los incendios y servicios especiales. El costo nocional se mantiene solo en FactIncidente; repetirlo en cada movilización multiplicaría el costo del incidente.
+Las falsas alarmas se identifican mediante DimTipoIncidente.Grupo=False Alarm, al mismo nivel de detalle que los incendios y servicios especiales. El costo nocional se mantiene solo en FactIncidente; repetirlo en cada movilización multiplicaría el costo del incidente.
 
 IncidentNumber relaciona las fuentes durante la preparación y conserva la trazabilidad. En el modelo analítico los hechos se filtran por dimensiones compartidas y sus resultados se agregan por separado. Este diseño respeta el [grano de cada hecho](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/grain/) y evita [uniones entre hechos que multipliquen registros](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/multipass-sql/).
 
-### 6.2. Ocho dimensiones y su utilidad
+### 6.2. Dimensiones
 
 | Dimensión | Atributos principales | Utilidad para el problema | Hechos |
 |---|---|---|---|
@@ -245,19 +206,19 @@ IncidentNumber relaciona las fuentes durante la preparación y conserva la traza
 | DimOrigenDespliegue | Home Station, Other Station, desconocido | Distinguir el contexto de salida del recurso | Movilización |
 | DimMotivoDemora | Código y descripción | Contextualizar el desplazamiento; no explicar la activación de la alarma | Movilización |
 
-La dimensión fecha se cuenta una vez; año, mes y día son atributos. El origen del despliegue conserva las categorías Home Station y Other Station, distintas del código y nombre de estación; no identifica la disponibilidad de la estación más cercana. El motivo de demora no se interpreta como causa de falsa alarma.
+El origen del despliegue conserva las categorías Home Station y Other Station, distintas del código y nombre de estación; no identifica la disponibilidad de la estación más cercana. El motivo de demora no se interpreta como causa de falsa alarma.
 
 ### 6.3. Relaciones y claves
 
 Cada dimensión tiene una clave primaria (PK), y el hecho correspondiente almacena una clave foránea (FK). La cardinalidad es **1:N**: una combinación dimensional puede aparecer en muchos hechos. FactIncidente tiene cinco relaciones dimensionales; FactMovilizacion tiene ocho. Las primeras cinco son conformadas: comparten la misma definición en ambos hechos.
 
-Las claves de fecha y hora se generan de forma determinista. Las demás dimensiones usan claves sustitutas que identifican sus combinaciones descriptivas. El miembro 0 representa contexto desconocido; no es un evento inventado. Una movilización sin incidente enlazado conserva su registro y sus dimensiones propias, pero no se le atribuye una falsa alarma ni un territorio a partir de suposiciones.
+Las claves de fecha y hora se generan de forma determinista. Las demás dimensiones usan claves sustitutas que identifican sus combinaciones descriptivas. El miembro 0 identifica valores desconocidos. Una movilización sin incidente enlazado conserva su registro y sus dimensiones propias, pero no se le atribuye una falsa alarma ni un territorio a partir de suposiciones.
 
-### 6.4. Medidas del diseño
+### 6.4. Medidas
 
 En FactIncidente se conservan la cantidad de bombas asistentes, estaciones participantes, llamadas, minutos de bomba redondeados, costo nocional y tiempos publicados de primer y segundo arribo. La cantidad de incidentes se obtiene contando sus filas; TieneMovilizacion identifica si existe al menos una movilización válida enlazada. En FactMovilizacion se conservan los tiempos de salida, viaje y llegada, y la cantidad de movilizaciones se obtiene contando filas válidas.
 
-Estas son medidas del modelo, no resultados ni metas de desempeño. Los tiempos de arribo y desplazamiento permiten estudiar la respuesta, y los recursos y el costo nocional describen el esfuerzo asociado. Su coincidencia no demostrará que las falsas alarmas causaron retrasos en otras emergencias.
+El análisis describe diferencias en tiempos y recursos; no demuestra que una falsa alarma haya causado retrasos en otra emergencia.
 
 El costo y las llamadas se agregan únicamente desde FactIncidente. Sumar NumBombas representa participaciones en incidentes, no vehículos únicos. Los tiempos de recursos no equivalen a duración total del incidente. Los filtros de estación, origen y demora corresponden a movilizaciones; no deben asignar artificialmente costos de incidentes a estaciones.
 
@@ -273,11 +234,9 @@ El costo y las llamadas se agregan únicamente desde FactIncidente. Sumar NumBom
 
 - Hora: franja → hora. Las franjas son agrupaciones académicas y no turnos oficiales de LFB.
 
-### 6.6. Condiciones para una interpretación válida
+### 6.6. Preparación de los datos
 
 Las copias idénticas de movilizaciones se deduplicarán y los identificadores con versiones contradictorias se revisarán antes de cargar. Los valores desconocidos permanecerán distinguibles de las categorías reales. Las dimensiones comunes de la movilización procederán del incidente enlazado. No se duplicarán medidas del incidente al integrar recursos.
-
-Estas reglas resguardan la lectura del problema; su ejecución técnica detallada permanece en el soporte interno. La primera entrega presenta el modelo y sus definiciones, sin incluir una implementación de base de datos.
 
 ### 6.7. Agregación y comparación entre hechos
 
@@ -297,7 +256,7 @@ FechaKey y HoraKey de FactMovilizacion corresponden a la fecha y hora de llamada
 
 Los tiempos publicados pueden estar sujetos a reglas de reporte. PerformanceReporting se conserva para documentar el universo seleccionado; una comparación con las metas oficiales requeriría reproducir sus criterios de inclusión. No se declarará incumplimiento individual por superar seis minutos ni se interpretará una demora ausente como ausencia de tráfico.
 
-### 6.8. Diagramas y especificación completa
+### 6.8. Diagramas
 
 ![Incidentes y cinco dimensiones compartidas](docs/05_Modelo_multidimensional/FactIncidente.png)
 
@@ -305,7 +264,7 @@ Los tiempos publicados pueden estar sujetos a reglas de reporte. PerformanceRepo
 
 Los diagramas muestran las claves, relaciones 1:N y grupos de medidas. La especificación de todos los campos está en el [diccionario del modelo](docs/04_Diccionario_datos/Diccionario_modelo.md). El [modelo Mermaid editable](docs/05_Modelo_multidimensional/Modelo_completo.mmd) conserva todos los atributos.
 
-### 6.9. Cómo se integran las comparaciones
+### 6.9. Población de análisis
 
 | Uso del análisis | Universo y regla |
 |---|---|
@@ -315,24 +274,20 @@ Los diagramas muestran las claves, relaciones 1:N y grupos de medidas. La especi
 
 Cada hecho se agrega por las mismas claves de fecha, hora, geografía, tipo de incidente y propiedad, y luego se alinean los resultados. La comparación conjunta usa el mismo conjunto de IncidentNumber; si se decide mostrar la demanda total, se identifica expresamente la diferencia de cobertura. Un incidente sin movilización enlazada no equivale a un incidente sin atención.
 
-Los filtros de estación, origen y motivo de demora corresponden a FactMovilizacion. Si se filtra una estación, los costos de FactIncidente no se convierten en costos de esa estación. El modelo no distribuye costos entre unidades ni promete recuperar el presupuesto estimado de falsas alarmas.
+Los filtros de estación, origen y motivo de demora corresponden a FactMovilizacion. Si se filtra una estación, los costos de FactIncidente no se convierten en costos de esa estación. El costo nocional se conserva a nivel de incidente, sin distribuirlo entre unidades.
 
-### 6.10. Qué se conserva en la fuente y qué se utiliza en el modelo
-
-LlegadaSeg representa AttendanceTimeSeconds y describe el tiempo hasta la llegada de cada unidad. TieneMovilizacion es un control derivado en FactIncidente para delimitar comparaciones enlazadas, junto con TieneIncidente en FactMovilizacion.
+### 6.10. Selección de campos
 
 La clasificación de falsa alarma permanece en DimTipoIncidente. PumpOrder y los dos campos de tipo de movilización permanecen en las fuentes: el primero tiene una definición insuficiente para inferir el orden de llegada y los otros dos no distinguen grupos en el corte de 2025. El retorno a estación no se modela como medida de duración por su falta de cobertura.
 
-El número de incidentes y el de movilizaciones se obtienen contando filas únicas de sus respectivos hechos. Los tiempos se resumen sobre valores válidos, conservando el número de observaciones. LlegadaSeg ya incluye el intervalo de salida y viaje; no se suman los tres tiempos como si fueran etapas distintas.
-
-### 6.11. Descripción de todos los campos utilizados
+### 6.11. Diccionario del modelo
 
 El detalle completo se incluye aquí y en el archivo de diccionario para facilitar su consulta desde el repositorio.
 
 <details>
 <summary>Ver los campos de las ocho dimensiones y las dos tablas de hechos</summary>
 
-Especificación de primera entrega; tipos de datos de referencia para el diseño. No se incluye implementación SQL en este entregable. Cada campo utilizado queda definido a continuación.
+Tipos de datos, claves y reglas de transformación de los campos del modelo.
 
 #### DimFecha
 
@@ -483,7 +438,6 @@ PerformanceReporting se conserva como categoría publicada, no como cantidad. El
 DimHora conserva las horas publicadas y agrupaciones descriptivas. No representa la política de alarmas automáticas de 07:00–20:30: el límite de media hora requiere información y validación adicionales. Ese análisis de cumplimiento no forma parte del alcance.
 
 [Modelo y reglas de agregación](docs/05_Modelo_multidimensional/Modelo_multidimensional.md) · [Diccionario de fuentes](docs/04_Diccionario_datos/Diccionario_fuentes.md).
-
 
 #### Campos de origen conservados fuera del modelo analítico
 

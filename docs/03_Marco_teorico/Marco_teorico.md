@@ -2,9 +2,9 @@
 
 ## 4.1. Business Intelligence como apoyo a la gestión
 
-Business Intelligence permite organizar información para comprender un proceso y apoyar decisiones. Su valor depende de la pregunta de gestión que se busca resolver. En este trabajo, la decisión es **qué zonas y tipos de atención deberían revisarse primero por sus tiempos de respuesta y recursos asociados, y dónde convendría investigar las causas de una concentración de falsas alarmas**. Los registros de atención constituyen la evidencia para esa decisión.
+Business Intelligence reúne y organiza datos para apoyar la toma de decisiones. En este proyecto se aplica al análisis de los tiempos de respuesta y los recursos utilizados por LFB, con comparaciones por zona y tipo de incidente.
 
-La relación entre negocio y tecnología se plantea de esta manera: decisión de revisar la atención → comparación por territorio y tipo de incidente → identificación de tiempos y recursos asociados → modelo multidimensional. El diseño seguirá cuatro decisiones: seleccionar el proceso, declarar el grano, identificar las dimensiones y definir las medidas. Esta secuencia conecta la necesidad de gestión con los datos disponibles ([Kimball Group, proceso de diseño](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)).
+El diseño dimensional sigue cuatro pasos: seleccionar el proceso, definir el grano, identificar las dimensiones y establecer las medidas ([Kimball Group, proceso de diseño](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)).
 
 ## 4.2. Proceso, hechos y nivel de detalle
 
@@ -22,28 +22,13 @@ El modelo estrella relaciona una tabla de hechos con dimensiones descriptivas. A
 
 Un datamart organiza información de un ámbito de la institución. El alcance aquí es la atención de incidentes durante 2025, con dos perspectivas relacionadas: tiempos de respuesta y recursos utilizados. Los incendios, falsas alarmas y servicios especiales se distinguen para comparar atenciones de características semejantes.
 
-OLTP se orienta al registro de transacciones y OLAP a su análisis desde distintas perspectivas. En el modelo propuesto será posible examinar un año por meses, un borough por wards y una categoría de propiedad por tipos específicos. Son jerarquías de análisis, no tablas adicionales para aumentar artificialmente el número de dimensiones.
+OLTP se orienta al registro de transacciones y OLAP a su análisis desde distintas perspectivas. En el modelo propuesto será posible examinar un año por meses, un borough por wards y una categoría de propiedad por tipos específicos. Estos niveles forman las jerarquías de análisis.
 
 ## 4.5. Integración y significado de los datos
 
-La integración debe preservar qué representa cada campo. El proceso ETL —extracción, transformación y carga— permitirá relacionar incidentes y movilizaciones, uniformizar formatos y distinguir valores ausentes de valores reales. Su papel es asegurar que las futuras comparaciones sean confiables. En este avance se definen esas reglas; la implementación no forma parte de la entrega.
+El proceso ETL —extracción, transformación y carga— prepara los datos para el análisis. En este caso requiere relacionar incidentes y movilizaciones, uniformizar formatos, revisar duplicados y distinguir los valores ausentes de los valores registrados.
 
-La integración requiere conservar las fuentes, definir las relaciones entre registros y construir un calendario coherente. Los defectos de los archivos son aspectos técnicos que deben resolverse; **la decisión de gestión del proyecto es seleccionar zonas y tipos de atención para revisión operativa o investigación preventiva**.
-
-## 4.6. Aplicación de la teoría a la propuesta
-
-| Concepto | Aplicación en este trabajo |
-|---|---|
-| Decisión de gestión | Seleccionar zonas y tipos de atención para revisión operativa o investigación preventiva |
-| Proceso | Atención de incidentes y despliegue de recursos |
-| Grano | Un incidente / una movilización |
-| Hechos | FactIncidente y FactMovilizacion |
-| Dimensiones | Ocho perspectivas del evento y su despliegue |
-| Datamart | Atención de incidentes: tiempos de respuesta y recursos asociados por territorio y tipo de demanda |
-| Integración | Relación trazable mediante IncidentNumber, sin repetir costos |
-| Jerarquías | Año–trimestre–mes–día; borough–ward; categoría–tipo de propiedad |
-
-## 4.7. Conceptos operativos que orientan la interpretación
+## 4.6. Conceptos operativos
 
 | Concepto | Significado en el proyecto |
 |---|---|
@@ -58,4 +43,4 @@ La integración requiere conservar las fuentes, definir las relaciones entre reg
 
 Las definiciones de tiempos y costo se apoyan en los metadatos y en las aclaraciones de LFB de [2024](https://www.london-fire.gov.uk/media/8863/foia84201-response-times-of-fire-brigades-and-data-collation-response.pdf) y [2022](https://www.london-fire.gov.uk/media/6796/foi-response-66361.pdf). La clasificación de falsas alarmas se interpreta con las [definiciones oficiales de Inglaterra](https://www.gov.uk/government/statistics/fire-and-rescue-incident-statistics-year-ending-march-2025/fire-and-rescue-incident-statistics-year-ending-march-2025).
 
-[Volver al informe principal](../../README.md) · [Índice de componentes](../README.md).
+[Volver al informe principal](../../README.md) · [Documentos](../README.md).
