@@ -4,8 +4,6 @@
 
 Business Intelligence reúne y organiza datos para apoyar la toma de decisiones. Aplicaremos este enfoque para comparar los tiempos de respuesta y los recursos utilizados por LFB según la zona y el tipo de incidente.
 
-El diseño dimensional sigue cuatro pasos: seleccionar el proceso, definir el grano, identificar las dimensiones y establecer las medidas ([Kimball Group, proceso de diseño](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)).
-
 ## 4.2. Hechos y nivel de detalle
 
 Un hecho representa un evento medible de un proceso. El nivel de detalle o grano define qué representa cada fila de una tabla de hechos. En nuestro caso distinguimos el incidente atendido y la movilización de un recurso: un mismo incidente puede generar varias movilizaciones, cada una con sus propios tiempos.

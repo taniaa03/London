@@ -88,8 +88,6 @@ La fuente de incidentes describe cada atención; la de movilizaciones, cada recu
 
 Business Intelligence reúne y organiza datos para apoyar la toma de decisiones. Aplicaremos este enfoque para comparar los tiempos de respuesta y los recursos utilizados por LFB según la zona y el tipo de incidente.
 
-El diseño dimensional sigue cuatro pasos: seleccionar el proceso, definir el grano, identificar las dimensiones y establecer las medidas ([Kimball Group, proceso de diseño](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)).
-
 ### 4.2. Hechos y nivel de detalle
 
 Un hecho representa un evento medible de un proceso. El nivel de detalle o grano define qué representa cada fila de una tabla de hechos. En nuestro caso distinguimos el incidente atendido y la movilización de un recurso: un mismo incidente puede generar varias movilizaciones, cada una con sus propios tiempos.
@@ -380,8 +378,6 @@ London Fire Brigade. (2026a). London Fire Brigade Incident Records [Conjunto de 
 London Fire Brigade. (2026b). London Fire Brigade Mobilisation Records [Conjunto de datos]. London Datastore. Recuperado el 24 de septiembre de 2026 de [Enlace a la fuente](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65)
 
 Ministry of Housing, Communities and Local Government. (2025). Fire and rescue incident statistics, year ending March 2025. GOV.UK. [Enlace a la fuente](https://www.gov.uk/government/statistics/fire-and-rescue-incident-statistics-year-ending-march-2025/fire-and-rescue-incident-statistics-year-ending-march-2025)
-
-Kimball Group. (s.f.). Four-step dimensional design process. [Enlace a la fuente](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/four-4-step-design-process/)
 
 London Fire Brigade. (2023). Your London Fire Brigade: Our plan for 2023–29. [Enlace a la fuente](https://www.london-fire.gov.uk/about-us/your-london-fire-brigade-our-plan-for-2023-29/)
 
