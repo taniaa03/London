@@ -32,7 +32,7 @@ Una combinación de grupo, clasificación y servicio especial.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| TipoIncidenteKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| TipoIncidenteKey | int | PK | IDENTITY(1,1) para identificar cada combinación de Grupo, Clasificacion y ServicioEspecial, que no tiene un código único en la fuente. Clave 0 para desconocido. |
 | Grupo | nvarchar(100) | Atributo | IncidentGroup: Fire, False Alarm o Special Service; desconocido si vacío. |
 | Clasificacion | nvarchar(200) | Atributo | StopCodeDescription; categoría detallada publicada. |
 | ServicioEspecial | nvarchar(200) | Atributo | SpecialServiceType; No aplica fuera de Special Service, Desconocido cuando falta dentro de ese grupo. |
@@ -43,7 +43,7 @@ Una combinación de categoría y tipo de inmueble.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| TipoPropiedadKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| TipoPropiedadKey | int | PK | IDENTITY(1,1) para identificar cada combinación de Categoria y Tipo, que no tiene un código único en la fuente. Clave 0 para desconocido. |
 | Categoria | nvarchar(100) | Atributo | PropertyCategory. |
 | Tipo | nvarchar(200) | Atributo | PropertyType. No identifica una dirección individual. |
 
@@ -53,7 +53,7 @@ Una combinación de borough, ward y distrito postal observados en incidentes.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| GeografiaKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| GeografiaKey | int | PK | IDENTITY(1,1) para identificar la combinación territorial de borough, ward y distrito postal; ninguno de sus códigos identifica por sí solo esa combinación. Clave 0 para desconocido. |
 | BoroughCodigo | nvarchar(30) | Atributo | IncGeo_BoroughCode. |
 | BoroughNombre | nvarchar(120) | Atributo | IncGeo_BoroughName. |
 | WardCodigo | nvarchar(30) | Atributo | IncGeo_WardCode. |
@@ -66,7 +66,7 @@ Una estación de despliegue identificada por código.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| EstacionKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| EstacionKey | int | PK | IDENTITY(1,1) como clave interna entera. El código alfanumérico de la estación se conserva en Codigo y se usa para buscar o reutilizar la clave. Clave 0 para desconocido. |
 | Codigo | nvarchar(30) | Atributo | DeployedFromStation_Code; clave de negocio. |
 | Nombre | nvarchar(150) | Atributo | DeployedFromStation_Name. No equivale a IncidentStationGround. |
 
@@ -76,7 +76,7 @@ Situación del recurso al desplegarse.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| OrigenDespliegueKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| OrigenDespliegueKey | int | PK | Sin IDENTITY. Catálogo fijo: 0=Desconocido, 1=Home Station, 2=Other Station. Los valores ausentes de la fuente se asignan a 0. |
 | Origen | nvarchar(50) | Atributo | DeployedFromLocation: Home Station, Other Station o Desconocido. No es una coordenada ni una estación adicional. |
 
 ## DimMotivoDemora
@@ -85,7 +85,7 @@ Un código de motivo reportado.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| MotivoDemoraKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| MotivoDemoraKey | int | PK | Sin IDENTITY. Valor entero de DelayCodeId, validado como código numérico positivo en 2025; 0 para desconocido. Codigo conserva el valor original como texto. |
 | Codigo | nvarchar(30) | Atributo | DelayCodeId; conservar como texto. |
 | Descripcion | nvarchar(200) | Atributo | DelayCode_Description. Not held up es ausencia explícita de demora; vacío es Desconocido. |
 
@@ -136,11 +136,11 @@ Una fila por ResourceMobilisationId de CalYear=2025 aceptado tras deduplicar y s
 
 ## Reglas comunes
 
-Todas las FK son obligatorias y usan la fila 0 cuando corresponde. Las medidas desconocidas permanecen NULL; nunca se convierten a 0 por conveniencia. En las seis dimensiones con IDENTITY(1,1), la fila desconocida con clave 0 se cargará explícitamente mediante IDENTITY_INSERT. Para Fecha y Hora se generan claves deterministas. Se mantiene un calendario completo para representar todos los días del periodo, incluso aquellos sin registros.
+Todas las FK son obligatorias y usan la fila 0 cuando corresponde. Las medidas desconocidas permanecen NULL; nunca se convierten a 0 por conveniencia. En las cuatro dimensiones con IDENTITY(1,1), la fila desconocida con clave 0 se cargará explícitamente mediante IDENTITY_INSERT. Para Fecha y Hora se generan claves deterministas. Se mantiene un calendario completo para representar todos los días del periodo, incluso aquellos sin registros.
 
 Usaremos dimensiones desnormalizadas y actualizaciones tipo 1 para corregir etiquetas. Conservaremos los archivos originales y el registro de los cambios realizados durante la carga.
 
-Antes de cargar los datos verificaremos que las longitudes definidas admitan los valores de la fuente. Buscaremos las claves por la combinación completa de atributos de cada dimensión y por código en estación y demora. Si un código tiene dos nombres en la misma descarga, revisaremos el conflicto antes de asignar la clave.
+Antes de cargar los datos verificaremos tipos y longitudes. Buscaremos las combinaciones de incidente, propiedad y geografía y el código de estación antes de insertar: si ya existen, reutilizaremos su clave. En origen aplicaremos el catálogo fijo y en demora validaremos DelayCodeId y su descripción. Los códigos nuevos o contradictorios se revisarán antes de cargar. IDENTITY solo genera números; las restricciones PK y UNIQUE y la validación de las claves de negocio evitarán duplicados.
 
 ## Reglas de enlace y tiempo
 

@@ -32,7 +32,7 @@ El origen del despliegue conserva las categorías Home Station y Other Station, 
 
 Cada dimensión tiene una clave primaria (PK), y el hecho correspondiente almacena una clave foránea (FK). La cardinalidad es **1:N**: una combinación dimensional puede aparecer en muchos hechos. FactIncidente tiene cinco relaciones dimensionales; FactMovilizacion tiene ocho. Las primeras cinco son conformadas: comparten la misma definición en ambos hechos.
 
-FechaKey y HoraKey se calculan a partir de la fecha y la hora de llamada. Para las claves primarias de las otras seis dimensiones usaremos IDENTITY(1,1). Reservamos el valor 0 para desconocidos y lo cargaremos explícitamente mediante IDENTITY_INSERT. Las claves foráneas reutilizan el identificador de su dimensión; no generan uno nuevo. FactIncidente y FactMovilizacion conservan los identificadores originales de la fuente, sin IDENTITY.
+Usaremos IDENTITY(1,1) en TipoIncidenteKey, TipoPropiedadKey, GeografiaKey y EstacionKey para generar claves internas enteras. FechaKey y HoraKey se calculan; OrigenDespliegueKey usa un catálogo fijo y MotivoDemoraKey conserva el código numérico de la fuente. Las claves foráneas reutilizan la clave de su dimensión. Los hechos mantienen sus identificadores originales, sin IDENTITY. En todas las dimensiones reservamos 0 para desconocidos; en las cuatro con IDENTITY lo cargaremos explícitamente mediante IDENTITY_INSERT.
 
 ## 6.4. Jerarquías
 

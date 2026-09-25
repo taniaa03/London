@@ -164,7 +164,7 @@ El origen del despliegue conserva las categorías Home Station y Other Station, 
 
 Cada dimensión tiene una clave primaria (PK), y el hecho correspondiente almacena una clave foránea (FK). La cardinalidad es **1:N**: una combinación dimensional puede aparecer en muchos hechos. FactIncidente tiene cinco relaciones dimensionales; FactMovilizacion tiene ocho. Las primeras cinco son conformadas: comparten la misma definición en ambos hechos.
 
-FechaKey y HoraKey se calculan a partir de la fecha y la hora de llamada. Para las claves primarias de las otras seis dimensiones usaremos IDENTITY(1,1). Reservamos el valor 0 para desconocidos y lo cargaremos explícitamente mediante IDENTITY_INSERT. Las claves foráneas reutilizan el identificador de su dimensión; no generan uno nuevo. FactIncidente y FactMovilizacion conservan los identificadores originales de la fuente, sin IDENTITY.
+Usaremos IDENTITY(1,1) en TipoIncidenteKey, TipoPropiedadKey, GeografiaKey y EstacionKey para generar claves internas enteras. FechaKey y HoraKey se calculan; OrigenDespliegueKey usa un catálogo fijo y MotivoDemoraKey conserva el código numérico de la fuente. Las claves foráneas reutilizan la clave de su dimensión. Los hechos mantienen sus identificadores originales, sin IDENTITY. En todas las dimensiones reservamos 0 para desconocidos; en las cuatro con IDENTITY lo cargaremos explícitamente mediante IDENTITY_INSERT.
 
 ### 6.4. Jerarquías
 
@@ -259,7 +259,7 @@ Una combinación de grupo, clasificación y servicio especial.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| TipoIncidenteKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| TipoIncidenteKey | int | PK | IDENTITY(1,1) para identificar cada combinación de Grupo, Clasificacion y ServicioEspecial, que no tiene un código único en la fuente. Clave 0 para desconocido. |
 | Grupo | nvarchar(100) | Atributo | IncidentGroup: Fire, False Alarm o Special Service; desconocido si vacío. |
 | Clasificacion | nvarchar(200) | Atributo | StopCodeDescription; categoría detallada publicada. |
 | ServicioEspecial | nvarchar(200) | Atributo | SpecialServiceType; No aplica fuera de Special Service, Desconocido cuando falta dentro de ese grupo. |
@@ -270,7 +270,7 @@ Una combinación de categoría y tipo de inmueble.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| TipoPropiedadKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| TipoPropiedadKey | int | PK | IDENTITY(1,1) para identificar cada combinación de Categoria y Tipo, que no tiene un código único en la fuente. Clave 0 para desconocido. |
 | Categoria | nvarchar(100) | Atributo | PropertyCategory. |
 | Tipo | nvarchar(200) | Atributo | PropertyType. No identifica una dirección individual. |
 
@@ -280,7 +280,7 @@ Una combinación de borough, ward y distrito postal observados en incidentes.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| GeografiaKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| GeografiaKey | int | PK | IDENTITY(1,1) para identificar la combinación territorial de borough, ward y distrito postal; ninguno de sus códigos identifica por sí solo esa combinación. Clave 0 para desconocido. |
 | BoroughCodigo | nvarchar(30) | Atributo | IncGeo_BoroughCode. |
 | BoroughNombre | nvarchar(120) | Atributo | IncGeo_BoroughName. |
 | WardCodigo | nvarchar(30) | Atributo | IncGeo_WardCode. |
@@ -293,7 +293,7 @@ Una estación de despliegue identificada por código.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| EstacionKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| EstacionKey | int | PK | IDENTITY(1,1) como clave interna entera. El código alfanumérico de la estación se conserva en Codigo y se usa para buscar o reutilizar la clave. Clave 0 para desconocido. |
 | Codigo | nvarchar(30) | Atributo | DeployedFromStation_Code; clave de negocio. |
 | Nombre | nvarchar(150) | Atributo | DeployedFromStation_Name. No equivale a IncidentStationGround. |
 
@@ -303,7 +303,7 @@ Situación del recurso al desplegarse.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| OrigenDespliegueKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| OrigenDespliegueKey | int | PK | Sin IDENTITY. Catálogo fijo: 0=Desconocido, 1=Home Station, 2=Other Station. Los valores ausentes de la fuente se asignan a 0. |
 | Origen | nvarchar(50) | Atributo | DeployedFromLocation: Home Station, Other Station o Desconocido. No es una coordenada ni una estación adicional. |
 
 #### DimMotivoDemora
@@ -312,7 +312,7 @@ Un código de motivo reportado.
 
 | Campo | Tipo de dato | Rol | Definición y transformación |
 |---|---|---|---|
-| MotivoDemoraKey | int | PK | Clave sustituta generada mediante IDENTITY(1,1); fila 0 reservada para desconocido. No procede de la fuente. |
+| MotivoDemoraKey | int | PK | Sin IDENTITY. Valor entero de DelayCodeId, validado como código numérico positivo en 2025; 0 para desconocido. Codigo conserva el valor original como texto. |
 | Codigo | nvarchar(30) | Atributo | DelayCodeId; conservar como texto. |
 | Descripcion | nvarchar(200) | Atributo | DelayCode_Description. Not held up es ausencia explícita de demora; vacío es Desconocido. |
 
