@@ -47,7 +47,7 @@ Compararemos los tiempos de salida, viaje y llegada, los motivos de demora y los
 
 4. Identificar concentraciones de falsas alarmas por zona y tipo de inmueble, distinguiendo sus categorías, para orientar la investigación de sus posibles causas.
 
-### 2.4. Alcance del estudio
+### 2.4. Especificaciones generales
 
 | Aspecto | Delimitación |
 |---|---|
