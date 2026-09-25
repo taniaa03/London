@@ -7,15 +7,30 @@
 * Alyssa Antuanette Trujillo Cruzado
 * Thiago Cesar Ormeño Freundt
 
-## 2. Marco Teórico
+## 2. Contexto
+
+La gestión y el despliegue de los servicios públicos de respuesta inmediata representan uno de los retos operacionales más complejos en la administración urbana moderna. Dentro de este ecosistema, los cuerpos de bomberos cumplen un rol de primera línea: a diferencia de otros servicios públicos, en los que una demora solo genera inconvenientes administrativos, un retraso de pocos minutos en la atención de un incendio puede marcar el paso de una emergencia controlable a una de consecuencias irreversibles. Los ensayos de Kerber (2012) muestran que un incendio en una sala con mobiliario moderno puede alcanzar el flashover en menos de cinco minutos, cuando con mobiliario antiguo tardaba del orden de treinta. El flashover es el momento en que el calor acumulado hace que todo el material combustible de una habitación se encienda casi al mismo tiempo. Por ello, la operación diaria enfrenta una tensión constante entre la necesidad de arribar en tiempos mínimos y la disponibilidad limitada de autobombas, tripulaciones y presupuesto operativo.
+
+Esta tensión se acentúa en las grandes ciudades, donde la demanda de auxilio es constante y los desplazamientos resultan más complejos. Londres es un caso representativo: allí el servicio lo presta la London Fire Brigade (LFB). En el Reino Unido no existen estándares nacionales de tiempo de respuesta, por lo que la LFB fija los suyos en su plan de gestión de riesgos: la primera autobomba debe llegar a cualquier punto de la ciudad en un promedio de seis minutos y la segunda en un promedio de ocho (HMICFRS, 2024). Este tiempo se mide desde que la unidad es movilizada hasta que llega al lugar del incidente (London Assembly Research Unit, 2026).
+
+La LFB cumple esa meta en promedio, pero con un margen cada vez menor. Desde 2017, el número de incidentes atendidos ha crecido en un tercio y, desde 2020, el tiempo promedio de llegada de la primera autobomba ha aumentado cada año, aunque sigue por debajo de los seis minutos (London Assembly Research Unit, 2026). Parte de esa demanda no corresponde a emergencias reales. En 2025, las alarmas automáticas de incendio (AFA), que se activan mediante sistemas de detección instalados en los edificios, representaron cerca de un tercio de todos los incidentes atendidos. En los predios no residenciales, casi todas resultaron ser falsas alarmas: menos del 1 % correspondió a un incendio real (LFB, s.f.-a). El fenómeno no es exclusivo de la capital, pues en el conjunto de Inglaterra las falsas alarmas superan un tercio de los incidentes atendidos (MHCLG, 2025). A ello se suma la fricción vial: aunque sus demoras se redujeron respecto del año anterior, Londres siguió siendo en 2025 la ciudad más congestionada del Reino Unido (INRIX, 2025).
+
+Cada salida injustificada implica horas de personal y de vehículo que la LFB valoriza en un costo nocional, calculado según el tiempo que cada unidad permanece en el incidente, redondeado a la hora, y una tarifa horaria estándar de la institución (LFB, s.f.-c). En el año previo a su consulta de 2023, atender falsas alarmas automáticas en predios no residenciales consumió cerca de 23,500 horas de tiempo de bomberos (LFB, 2023). Mientras una unidad permanece inmovilizada, la siguiente emergencia de su zona debe atenderse desde otra estación; de hecho, el cálculo oficial de los tiempos de arribo incluye autobombas enviadas desde otras áreas de estación (LFB, s.f.-b). En ese escenario, los tiempos de viaje aumentan y la cobertura territorial queda temporalmente vulnerable. Consciente de este costo, la LFB ya no acude entre las 7:00 y las 20:30 a las alarmas automáticas de la mayoría de edificios comerciales, salvo que una llamada confirme el fuego (LFB, s.f.-a).
+
+En consecuencia, el problema no reside en que la LFB incumpla hoy su meta promedio, sino en que ese margen se estrecha mientras crece la demanda, y en que una cifra agregada puede ocultar diferencias entre distritos (boroughs), franjas horarias y tipos de incidente. Identificar dónde y por qué se concentra ese deterioro exige examinar el detalle de cada atención. La LFB publica en el London Datastore registros abiertos de cada incidente atendido desde 2009, con cuándo y dónde ocurrió y de qué tipo fue, actualizados mensualmente, y de cada autobomba movilizada, con su estación de origen y sus tiempos de llegada (LFB, 2026a, 2026b). Esta información permite analizar la problemática desde múltiples perspectivas cruzadas y convertirla en evidencia para optimizar los recursos y tiempos de auxilio en la ciudad.
+
+## 3. Marco Teórico
 * **Principios de Business Intelligence:** Integración y transformación de datos operacionales para la toma de decisiones estratégicas en servicios públicos de emergencia.
 * **Metodología de Modelado Dimensional (Ralph Kimball):** Implementación de un Esquema en Estrella (*Star Schema*) compuesto por una tabla de hechos transaccional y dimensiones conformadas.
 * **Procesos ETL:** Extracción, limpieza y carga de registros de incidentes y movilizaciones hacia un repositorio analítico.
 
-## 3. Descripción de la Entidad y Problemática
+## 4. Descripción de la Entidad y Problemática
 * **Entidad:** El proyecto toma como institución de referencia a la London Fire Brigade (LFB), el servicio de bomberos y rescate de la ciudad de Londres. Está dirigida por el London Fire Commissioner y supervisada por el Alcalde de Londres. Es el servicio de bomberos más ocupado del Reino Unido y uno de los más grandes del mundo: cada año recibe alrededor de un cuarto de millón de llamadas al 999, de las cuales aproximadamente 120 000 terminan en un incidente que requiere enviar un camión.
   
 * **Problemática:** En una emergencia, los primeros minutos son decisivos. Por ello, el tiempo de respuesta es el indicador central con el que se evalúa el desempeño de un servicio de bomberos. La LFB se compromete a que el primer camión llegue en un promedio de 6 minutos y el segundo en 8. En promedio cumple (5 min 34 s entre enero de 2025 y julio de 2026), pero el promedio de Londres esconde brechas: solo el 65,5 % de los primeros camiones llega en 6 minutos o menos, y distritos como Hillingdon, Havering, Bromley y Enfield superan los 6 minutos. Además, las falsas alarmas representan el 57,6 % de las movilizaciones. La información para analizar estas brechas está dividida en dos archivos separados (incidentes y movilizaciones), lo que impide saber con rapidez dónde, cuándo y por qué no se cumplen los estándares.
+
+**Pregunta Central de Negocio**
+> ¿Qué distritos (*boroughs* y *wards*) y tipos de incidente debe priorizar la London Fire Brigade para optimizar sus tiempos de arribo, reducir su exposición a las demoras en el trayecto y disminuir el costo nocional de las movilizaciones por falsas alarmas durante 2025, y se mantienen estos patrones en el primer semestre de 2026?
   
 * **Objetivo:** Diseñar un datamart que integre los registros de incidentes y movilizaciones de la LFB para analizar el cumplimiento de los estándares de tiempo de respuesta y el uso de sus recursos.
 Integrar y depurar los archivos de incidentes y movilizaciones mediante un proceso ETL.
@@ -29,9 +44,9 @@ Integrar y depurar los archivos de incidentes y movilizaciones mediante un proce
 
 ---
 
-## 4. Modelamiento Dimensional (8 Dimensiones)
+## 5. Modelamiento Dimensional (8 Dimensiones)
 
-### 4.1 Fuentes de datos
+### 5.1 Fuentes de datos
 
 | Fuente | Archivos | Uso |
 |---|---|---|
@@ -40,14 +55,14 @@ Integrar y depurar los archivos de incidentes y movilizaciones mediante un proce
 
 Ambas fuentes se unen por `IncidentNumber`. Los datos se publican bajo la Open Government Licence v2.0.
 
-### 4.2 Definición
+### 5.2 Definición
 
 * **Proceso de negocio:** movilización de camiones de bomberos a incidentes.
 * **Granularidad:** una fila por cada camión movilizado a un incidente.
 * **Tabla de hechos:** `FactMovilizacion`.
 * **Dimensiones (8):** `DimFecha`, `DimHora`, `DimTipoIncidente`, `DimPropiedad`, `DimUbicacion`, `DimEstacion` (dos roles: estación del área y estación de salida), `DimRecurso` y `DimRetraso`.
 
-### 4.3 Modelo en estrella
+### 5.3 Modelo en estrella
 
 ```mermaid
 erDiagram
@@ -140,7 +155,7 @@ erDiagram
     }
 ```
 
-### 4.4 Métricas y KPIs
+### 5.4 Métricas y KPIs
 
 | Tipo | Nombre | Cálculo | Meta |
 |---|---|---|---|
@@ -152,7 +167,7 @@ erDiagram
 | KPI | % primer camión en 10 min | `AVG(LlegaEn10Min)` con `OrdenLlegada = 1` | ≥ 90 % |
 | KPI | % horas-camión en falsas alarmas | Horas-camión *False Alarm* / horas-camión totales | — |
 
-### 4.5 Llaves primarias
+### 5.5 Llaves primarias
 
 | Tabla | PK | ¿Autogenerada? | Motivo |
 |---|---|---|---|
@@ -162,7 +177,7 @@ erDiagram
 | DimRetraso | RetrasoKey (= DelayCodeId) | No | Catálogo pequeño definido por la LFB |
 | Resto de dimensiones | …Key | Sí | La fuente trae textos, no IDs estables |
 
-### 4.6 Consideraciones del diseño
+### 5.6 Consideraciones del diseño
 
 * Los datos del incidente se repiten en cada camión; para contar incidentes se usa `COUNT(DISTINCT NumeroIncidente)`.
 * No se usan métricas a nivel incidente (`Notional Cost`, `PumpMinutesRounded`, `NumCalls`), porque se sumarían una vez por cada camión.
@@ -174,11 +189,11 @@ erDiagram
 
 ---
 
-## 5. Diccionario de Datos
+## 6. Diccionario de Datos
 
 A continuación se describen las tablas que conforman el modelo dimensional y, al final, las columnas de las fuentes originales con la decisión tomada para cada una.
 
-### 5.1 Tablas del modelo dimensional
+### 6.1 Tablas del modelo dimensional
 
 #### FactMovilizacion
 **Descripción:** tabla de hechos que almacena una fila por cada camión movilizado a un incidente, con sus tiempos de respuesta y los indicadores de cumplimiento de los estándares.
@@ -300,7 +315,7 @@ A continuación se describen las tablas que conforman el modelo dimensional y, a
 | DescripcionRetraso | VARCHAR(40) | Causa: Traffic, roadworks, etc; Traffic calming measures; Address incomplete/wrong; Weather conditions; Not held up; etc. |
 | TieneRetraso | BIT | 1 si hubo retraso; 0 para "Not held up" (12) y para "No registrado" (0). |
 
-### 5.2 Columnas de las fuentes originales
+### 6.2 Columnas de las fuentes originales
 
 Las descripciones siguen los metadatos oficiales que publica la LFB junto a cada conjunto de datos (`docs/metadatos/`); los ejemplos, tipos y porcentajes de nulos se obtuvieron de los archivos descargados. Frente a los metadatos del PDF de 2022, los archivos actuales tienen estas diferencias: `PumpHoursRoundUp` pasó a ser `PumpMinutesRounded`; se agregaron `NumCalls` (incidentes) y `BoroughName` y `WardName` (movilizaciones); y las fechas de movilización ya no traen segundos.
 
@@ -378,7 +393,7 @@ Columnas revisadas sobre `movilizaciones_2025_hasta_julio_2026.csv` (24 columnas
 
 ---
 
-## 6. Estructura del Repositorio
+## 7. Estructura del Repositorio
 
 ```
 LFB-BI/
@@ -397,7 +412,7 @@ LFB-BI/
 
 ---
 
-## 7. Referencias
+## 8. Referencias
 
 * HMICFRS. (2024). *London Fire Brigade: Fire and rescue service inspection 2023–2025*. https://hmicfrs.justiceinspectorates.gov.uk/frs-assessments/london-2023-2025/
 * Kimball, R., & Ross, M. (2013). *The data warehouse toolkit: The definitive guide to dimensional modeling* (3.ª ed.). Wiley.
