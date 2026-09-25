@@ -14,7 +14,7 @@ Catálogos oficiales: [Incident Records](https://data.london.gov.uk/dataset/lond
 ## Cómo preparar las copias locales
 
 1. Descargar los dos archivos completos mediante los enlaces anteriores.
-2. Guardarlos en `data/raw/recientes/`, con los nombres indicados en el [manifest](manifest_descargas.json). Esta carpeta está excluida de Git mediante `.gitignore`.
+2. Guardarlos en `data/raw/recientes/`, con los nombres indicados en el [manifest](manifest_descargas.json).
 3. Conservar los originales y aplicar el filtro `CalYear=2025` en la preparación del análisis.
 4. Consultar el [diccionario de fuentes](../docs/04_Diccionario_datos/Diccionario_fuentes.md) y las [reglas de enlace y agregación](../docs/05_Modelo_multidimensional/Modelo_multidimensional.md) antes de combinar los archivos. Un incidente puede tener varias movilizaciones.
 
