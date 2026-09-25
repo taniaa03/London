@@ -1,37 +1,11 @@
 # Tiempos de respuesta y uso de recursos en la atención de incidentes de London Fire Brigade
 
-**Primera entrega · Business Intelligence · Universidad del Pacífico · 2026-II, sección A**
-
-Docente: Javier Guillermo Wam Baltodano.
-
 **Integrantes:**
 
 - Tania Lisset Chavez Alvitez
 - Brayan Anderson Rua Pomahuacre
 - Alyssa Antuanette Trujillo Cruzado
 - Thiago Cesar Ormeño Freundt
-
-Periodo del estudio: año calendario 2025. Versión: 25 de septiembre de 2026.
-
-## Lectura del informe
-
-El proyecto estudia el proceso de atención de incidentes de LFB para apoyar la selección de zonas y tipos de atención que requieren revisión operativa y orientar acciones preventivas. Este README reúne la introducción, la problemática y los componentes de la primera entrega. Cada componente también puede revisarse por separado:
-
-1. [Introducción](docs/01_Introduccion_y_problema/Introduccion.md).
-
-2. [Planteamiento de la problemática](docs/01_Introduccion_y_problema/Planteamiento_problema.md).
-
-3. [Descripción de la institución](docs/02_Descripcion_institucion/Descripcion_institucion.md).
-
-4. [Marco teórico](docs/03_Marco_teorico/Marco_teorico.md).
-
-5. [Diccionario de datos](docs/04_Diccionario_datos/LEER_PRIMERO.md).
-
-6. [Modelo multidimensional](docs/05_Modelo_multidimensional/Modelo_multidimensional.md).
-
-7. [Referencias](docs/06_Fuentes/Referencias.md).
-
-El [diccionario completo del modelo](docs/04_Diccionario_datos/Diccionario_modelo.md) y el [diccionario de fuentes](docs/04_Diccionario_datos/Diccionario_fuentes.md) contienen las definiciones de todos los campos.
 
 ## 1. Introducción
 
@@ -571,26 +545,7 @@ Las cifras institucionales citadas en la introducción proceden de publicaciones
 
 Source: London Fire Brigade / London Datastore. Contains public sector information licensed under the [Open Government Licence v2.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/).
 
-## Organización del repositorio
+## Documentos
 
-```text
-London/
-├── README.md                     Informe completo e índice de lectura
-├── docs/
-│   ├── README.md                 Índice de documentos
-│   ├── 01_Introduccion_y_problema/
-│   ├── 02_Descripcion_institucion/
-│   ├── 03_Marco_teorico/
-│   ├── 04_Diccionario_datos/      Fuentes, modelo y metadatos oficiales
-│   ├── 05_Modelo_multidimensional/ Diagramas y reglas del modelo
-│   └── 06_Fuentes/               Referencias bibliográficas
-├── data/
-│   ├── README.md                 Descargas y selección del periodo 2025
-│   └── manifest_descargas.json   Trazabilidad de las copias descargadas
-├── .gitignore                    Exclusión de datos grandes y temporales
-└── LICENSE                       Licencia del repositorio
-```
-
-Esta entrega documenta el problema, los conceptos, las fuentes y el diseño multidimensional. Los resultados del análisis, el tablero y las recomendaciones basadas en resultados se desarrollarán en etapas posteriores.
-
-Los datos de London Fire Brigade mantienen la licencia indicada por su proveedor, citada en las referencias; la licencia del repositorio no sustituye las condiciones de esos datos.
+- [Documentos por sección](docs/README.md).
+- [Datos oficiales y descargas](data/README.md).
