@@ -2,19 +2,9 @@
 
 Greater London Authority. (2025, 16 de enero). Fire response times (3) (Pregunta n.º 2025/0167) [Respuesta a pregunta al alcalde]. London City Hall. [Enlace a la fuente](https://www.london.gov.uk/who-we-are/what-london-assembly-does/questions-mayor/find-an-answer/fire-response-times-3)
 
-INRIX. (2025, 2 de diciembre). INRIX 2025 Global Traffic Scorecard: Traffic jams ease across the U.K. as London delays fall 10 percent. [Enlace a la fuente](https://inrix.com/press-releases/2025-global-traffic-scorecard-uk/)
-
-Kerber, S. (2012). Analysis of changing residential fire dynamics and its implications on firefighter operational timeframes. Fire Technology, 48, 865–891. [Enlace a la fuente](https://doi.org/10.1007/s10694-011-0249-2)
-
 London Assembly Research Unit. (2026). London Fire Brigade: Data analysis, March 2026. Greater London Authority. [Enlace a la fuente](https://www.london.gov.uk/who-we-are/what-london-assembly-does/london-assembly-research-unit-publications/london-fire-brigade)
 
-London Fire Brigade. (s.f.-a). Automatic fire alarms and false alarms. Recuperado el 25 de septiembre de 2026 de [Enlace a la fuente](https://www.london-fire.gov.uk/safety/the-workplace/automatic-fire-alarms/)
-
-London Fire Brigade. (s.f.-b). Automatic fire alarms policy. Recuperado el 25 de septiembre de 2026 de [Enlace a la fuente](https://www.london-fire.gov.uk/safety/the-workplace/automatic-fire-alarms/afa-policy/)
-
 London Fire Brigade. (2022, 6 de julio). Freedom of Information request reference number 6636.1 [Respuesta a solicitud de información]. [Enlace a la fuente](https://www.london-fire.gov.uk/media/6796/foi-response-66361.pdf)
-
-London Fire Brigade. (2023, 13 de septiembre). Brigade begins consultation to reduce attendance at false alarms so firefighters can spend more time keeping communities safe. [Enlace a la fuente](https://www.london-fire.gov.uk/news/2023/september/brigade-begins-consultation-to-reduce-attendance-at-false-alarms-so-firefighters-can-spend-more-time-keeping-communities-safe/)
 
 London Fire Brigade. (2024, 5 de febrero). Freedom of Information request reference number 8420.1 [Respuesta a solicitud de información]. [Enlace a la fuente](https://www.london-fire.gov.uk/media/8863/foia84201-response-times-of-fire-brigades-and-data-collation-response.pdf)
 
@@ -28,14 +18,8 @@ Kimball Group. (s.f.). Four-step dimensional design process. [Enlace a la fuente
 
 London Fire Brigade. (2023). Your London Fire Brigade: Our plan for 2023–29. [Enlace a la fuente](https://www.london-fire.gov.uk/about-us/your-london-fire-brigade-our-plan-for-2023-29/)
 
-## Datos y trazabilidad de la descarga
-
-Las [instrucciones de descarga](../../data/README.md) permiten acceder a los archivos oficiales completos. El [manifest de descargas](../../data/manifest_descargas.json) registra las URL, los tamaños, las fechas y los hashes SHA-256 de las copias descargadas por el grupo. Los datos grandes se conservan localmente; las rutas del manifest indican dónde guardarlos dentro de este repositorio. Los dos diccionarios oficiales se incluyen en docs/04_Diccionario_datos/metadatos/. Los archivos históricos son respaldo; el análisis se delimita a 2025.
-
-Las cifras citadas en la introducción corresponden a las publicaciones indicadas en las referencias y pueden diferir de los archivos descargados por sus fechas de actualización.
+Los enlaces de descarga y el registro de las copias utilizadas están en [Datos oficiales](../../data/README.md).
 
 Source: London Fire Brigade / London Datastore. Contains public sector information licensed under the [Open Government Licence v2.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/).
-
-[Manifest de descarga](../../data/manifest_descargas.json) · [Enlaces directos](../../data/README.md).
 
 [Volver al informe principal](../../README.md) · [Documentos](../README.md).

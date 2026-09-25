@@ -14,16 +14,7 @@ London Fire Brigade (LFB) es el servicio de bomberos y rescate de Londres. Combi
 | Intervención | Examinaremos las autobombas asistentes, los minutos publicados con redondeo y el costo nocional del incidente. |
 | Retorno de unidades | Forma parte del proceso general, pero queda fuera del análisis de duración y disponibilidad por insuficiencia del campo de retorno. |
 
-## 3.3. Usuarios previstos
-
-Orientamos el análisis a las decisiones de las áreas de operaciones, planificación y prevención de LFB.
-
-| Área | Decisión |
-|---|---|
-| Operaciones y planificación | Seleccionar zonas y tipos de atención en los que conviene examinar tiempos de llegada y demoras reportadas. |
-| Prevención | Identificar concentraciones de falsas alarmas por zona y tipo de inmueble para investigar sus posibles causas. |
-
-## 3.4. Fuentes de datos
+## 3.3. Fuentes de datos
 
 Utilizaremos los registros abiertos oficiales de [incidentes](https://data.london.gov.uk/dataset/london-fire-brigade-incident-records-em8xy) y [movilizaciones](https://data.london.gov.uk/dataset/london-fire-brigade-mobilisation-records-24r65), publicados por LFB en London Datastore. Trabajaremos con la descarga del 24 de septiembre de 2026 y seleccionaremos el año 2025, que está completo en ambos archivos.
 

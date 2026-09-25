@@ -11,7 +11,7 @@ Diseñamos el modelo con dos tablas de hechos: una para cada incidente y otra pa
 
 Las falsas alarmas se identifican mediante DimTipoIncidente.Grupo=False Alarm, al mismo nivel de detalle que los incendios y servicios especiales. El costo nocional se mantiene solo en FactIncidente; repetirlo en cada movilización multiplicaría el costo del incidente.
 
-IncidentNumber relaciona las fuentes durante la preparación y conserva la trazabilidad. En el modelo analítico los hechos se filtran por dimensiones compartidas y sus resultados se agregan por separado. Este diseño respeta el grano de cada hecho y evita uniones entre hechos que multipliquen registros.
+IncidentNumber relaciona las fuentes durante la preparación. Las tablas de hechos no se conectan directamente entre sí; comparten dimensiones.
 
 ## 6.2. Dimensiones
 
@@ -26,7 +26,7 @@ IncidentNumber relaciona las fuentes durante la preparación y conserva la traza
 | DimOrigenDespliegue | Home Station, Other Station, desconocido | Distinguir el contexto de salida del recurso | Movilización |
 | DimMotivoDemora | Código y descripción | Contextualizar el desplazamiento; no explicar la activación de la alarma | Movilización |
 
-El origen del despliegue conserva las categorías Home Station y Other Station, distintas del código y nombre de estación; no identifica la disponibilidad de la estación más cercana. El motivo de demora no se interpreta como causa de falsa alarma.
+El origen del despliegue conserva las categorías Home Station y Other Station, distintas del código y nombre de estación; no identifica la disponibilidad de la estación más cercana.
 
 ## 6.3. Relaciones y claves
 
@@ -34,15 +34,7 @@ Cada dimensión tiene una clave primaria (PK), y el hecho correspondiente almace
 
 Las claves de fecha y hora se generan de forma determinista. Las demás dimensiones usan claves sustitutas que identifican sus combinaciones descriptivas. El miembro 0 identifica valores desconocidos. Una movilización sin incidente enlazado conserva su registro y sus dimensiones propias, pero no se le atribuye una falsa alarma ni un territorio a partir de suposiciones.
 
-## 6.4. Medidas
-
-En FactIncidente se conservan la cantidad de bombas asistentes, estaciones participantes, llamadas, minutos de bomba redondeados, costo nocional y tiempos publicados de primer y segundo arribo. La cantidad de incidentes se obtiene contando sus filas; TieneMovilizacion identifica si existe al menos una movilización válida enlazada. En FactMovilizacion se conservan los tiempos de salida, viaje y llegada, y la cantidad de movilizaciones se obtiene contando filas válidas.
-
-El análisis describe diferencias en tiempos y recursos; no demuestra que una falsa alarma haya causado retrasos en otra emergencia.
-
-El costo y las llamadas se agregan únicamente desde FactIncidente. Sumar NumBombas representa participaciones en incidentes, no vehículos únicos. Los tiempos de recursos no equivalen a duración total del incidente. Los filtros de estación, origen y demora corresponden a movilizaciones; no deben asignar artificialmente costos de incidentes a estaciones.
-
-## 6.5. Jerarquías
+## 6.4. Jerarquías
 
 - Fecha: año → trimestre → mes → día. Día de semana es un atributo independiente.
 
@@ -54,11 +46,11 @@ El costo y las llamadas se agregan únicamente desde FactIncidente. Sumar NumBom
 
 - Hora: franja → hora. Definimos las franjas para el análisis; no representan turnos oficiales de LFB.
 
-## 6.6. Preparación de los datos
+## 6.5. Preparación de los datos
 
 Eliminaremos las copias idénticas de movilizaciones y separaremos los identificadores con versiones contradictorias para revisarlos antes de la carga. Mantendremos los valores desconocidos separados de las categorías registradas. Obtendremos las dimensiones compartidas del incidente enlazado, sin repetir sus medidas por cada recurso movilizado.
 
-## 6.7. Agregación y comparación entre hechos
+## 6.6. Agregación y comparación entre hechos
 
 | Medida | Agregación e interpretación |
 |---|---|
@@ -76,7 +68,7 @@ FechaKey y HoraKey de FactMovilizacion corresponden a la fecha y hora de llamada
 
 Los tiempos publicados pueden estar sujetos a reglas de reporte. PerformanceReporting se conserva para documentar el universo seleccionado; una comparación con las metas oficiales requeriría reproducir sus criterios de inclusión. No se declarará incumplimiento individual por superar seis minutos ni se interpretará una demora ausente como ausencia de tráfico.
 
-## 6.8. Diagramas
+## 6.7. Diagramas
 
 ![Incidentes y cinco dimensiones compartidas](../05_Modelo_multidimensional/FactIncidente.png)
 
@@ -84,7 +76,7 @@ Los tiempos publicados pueden estar sujetos a reglas de reporte. PerformanceRepo
 
 Los diagramas muestran los campos, las claves y las relaciones 1:N. La especificación de todos los campos está en el [diccionario del modelo](../04_Diccionario_datos/Diccionario_modelo.md). El [modelo Mermaid editable](../05_Modelo_multidimensional/Modelo_completo.mmd) conserva todos los atributos.
 
-## 6.9. Población de análisis
+## 6.8. Población de análisis
 
 | Uso del análisis | Universo y regla |
 |---|---|
@@ -92,12 +84,12 @@ Los diagramas muestran los campos, las claves y las relaciones 1:N. La especific
 | Comparar tiempos y recursos de las mismas atenciones | FactIncidente con TieneMovilizacion=1 y FactMovilizacion con TieneIncidente=1. Ambos controles se calculan después de depurar las movilizaciones. |
 | Describir movilizaciones sin incidente enlazado | Mantenerlas identificadas para revisión de cobertura. No atribuirles zona, propiedad ni tipo de incidente sin respaldo. |
 
-Cada hecho se agrega por las mismas claves de fecha, hora, geografía, tipo de incidente y propiedad, y luego se alinean los resultados. La comparación conjunta usa el mismo conjunto de IncidentNumber; si se decide mostrar la demanda total, se identifica expresamente la diferencia de cobertura. Un incidente sin movilización enlazada no equivale a un incidente sin atención.
+La comparación conjunta usa el mismo conjunto de IncidentNumber. Un incidente sin movilización enlazada en la descarga no equivale a un incidente sin atención.
 
-Los filtros de estación, origen y motivo de demora corresponden a FactMovilizacion. Si se filtra una estación, los costos de FactIncidente no se convierten en costos de esa estación. El costo nocional se conserva a nivel de incidente, sin distribuirlo entre unidades.
+Los filtros de estación, origen y demora se aplican a FactMovilizacion. El costo nocional pertenece al incidente y no se reparte entre estaciones ni unidades. Es una estimación, no una pérdida presupuestaria ni un ahorro recuperable. Los registros tampoco permiten demostrar que una falsa alarma haya retrasado otra emergencia.
 
-## 6.10. Selección de campos
+## 6.9. Selección de campos
 
-La clasificación de falsa alarma permanece en DimTipoIncidente. PumpOrder y los dos campos de tipo de movilización permanecen en las fuentes: el primero tiene una definición insuficiente para inferir el orden de llegada y los otros dos no distinguen grupos en el corte de 2025. El retorno a estación no se modela como medida de duración por su falta de cobertura.
+Conservamos PumpOrder, PlusCode_Code y PlusCode_Description en las fuentes, sin incorporarlos al modelo. El primero no define con precisión el orden de llegada; los otros dos solo distinguen Initial / Initial Mobilisation en 2025. PumpCount queda fuera de las medidas por falta de definición suficiente. El tiempo de retorno tampoco se usa por su escasa cobertura.
 
 [Volver al informe principal](../../README.md) · [Documentos](../README.md).

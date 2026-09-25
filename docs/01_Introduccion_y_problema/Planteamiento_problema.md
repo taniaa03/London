@@ -2,13 +2,9 @@
 
 ## 2.1. Situación problemática
 
-La London Fire Brigade responde a una demanda compuesta por incendios, servicios especiales y falsas alarmas, distribuida entre los distintos boroughs de Londres. Cada atención presenta características que influyen en la respuesta requerida y en los recursos utilizados. Por ello, evaluar el servicio exige considerar conjuntamente qué tipo de incidente se atiende, cuánto tardan los recursos en llegar y qué despliegue queda asociado a esa atención.
+El promedio de llegada de LFB para todo Londres no permite distinguir qué zonas y tipos de atención presentan mayores tiempos ni qué recursos se utilizan en cada caso. El problema que abordamos es cómo priorizar su revisión considerando los tiempos de respuesta, las demoras reportadas y el despliegue asociado a las mismas atenciones.
 
-El problema de gestión consiste en determinar qué zonas y tipos de atención conviene revisar primero. Una meta promedio para todo Londres no describe las diferencias entre territorios, horarios y clases de incidente, ni muestra qué movilizaciones, minutos de autobomba y costo nocional corresponden a cada grupo de atenciones. Analizaremos estas diferencias para fundamentar qué zonas y tipos de atención deberían revisarse primero.
-
-Compararemos los tiempos de salida, viaje y llegada, los motivos de demora reportados y la estación desde la que salió cada recurso. Para esas mismas atenciones, revisaremos las movilizaciones, las autobombas asistentes, los minutos de autobomba y el costo nocional. Compararemos incidentes de características semejantes, porque una emergencia compleja puede requerir más tiempo y recursos que una intervención menor.
-
-También examinaremos en qué zonas y tipos de inmueble se concentran las falsas alarmas y qué recursos se utilizan para atenderlas. Con ello buscamos identificar dónde conviene investigar sus causas y orientar acciones preventivas, junto con la revisión de los tiempos de respuesta del servicio.
+Compararemos los tiempos de salida, viaje y llegada, los motivos de demora y los recursos empleados entre incidentes de características semejantes. Así evitaremos interpretar el mayor despliegue de una emergencia compleja como ineficiencia. En el caso de las falsas alarmas, examinaremos su concentración por zona y tipo de inmueble para identificar dónde conviene investigar sus causas y orientar acciones preventivas.
 
 ## 2.2. Pregunta central de negocio
 
@@ -27,8 +23,6 @@ También examinaremos en qué zonas y tipos de inmueble se concentran las falsas
 3. Examinar las movilizaciones, las autobombas asistentes, los minutos publicados con redondeo y el costo nocional asociados a esas atenciones.
 
 4. Identificar concentraciones de falsas alarmas por zona y tipo de inmueble, distinguiendo sus categorías, para orientar la investigación de sus posibles causas.
-
-5. Integrar esas comparaciones para sustentar la selección de zonas y tipos de atención que requieren revisión.
 
 ## 2.4. Alcance del estudio
 

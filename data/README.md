@@ -26,8 +26,6 @@ Catálogos oficiales: [Incident Records](https://data.london.gov.uk/dataset/lond
 
 Los tamaños y hashes describen las copias descargadas por el grupo el 24 de septiembre de 2026. El proveedor puede actualizar los archivos de esos mismos enlaces; una descarga posterior puede tener otro contenido y otro hash. La copia original descargada se conserva localmente para mantener el corte del estudio.
 
-Los archivos de datos grandes no se incluyen en Git; los diccionarios oficiales sí se incluyen. Los valores ausentes, duplicados y conflictos de identificación se tratan según las reglas documentadas en el modelo, sin reemplazar tiempos desconocidos por cero.
-
 Source: London Fire Brigade / London Datastore. Contains public sector information licensed under the [Open Government Licence v2.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/).
 
 [Volver al informe](../README.md).

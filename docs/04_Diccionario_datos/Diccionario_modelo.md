@@ -149,15 +149,3 @@ En FactMovilizacion, las cinco claves compartidas se obtienen del incidente enla
 PerformanceReporting se conserva como categoría publicada, no como cantidad. El ejemplo oficial 1 corresponde al primer recurso que llega; el campo no sustituye la documentación completa del universo usado en reportes de desempeño.
 
 [Modelo y reglas de agregación](../05_Modelo_multidimensional/Modelo_multidimensional.md) · [Diccionario de fuentes](Diccionario_fuentes.md).
-
-## Campos de origen conservados fuera del modelo analítico
-
-PumpOrder permanece en el respaldo de movilizaciones: su definición no especifica despacho o llegada y no se necesita para identificar el primer arribo. PlusCode_Code y PlusCode_Description también se conservan en la fuente; en 2025 solo distinguen Initial / Initial Mobilisation y no aportan segmentación a la pregunta. No se agregan como dimensión ni como atributos de FactMovilizacion.
-
-La clasificación de falsa alarma se obtiene de DimTipoIncidente.Grupo=False Alarm en ambos hechos. No se duplica mediante una bandera EsFalsaAlarma en FactIncidente. El conteo de incidentes se obtiene contando sus filas y el de movilizaciones contando sus filas válidas; no se incorpora una cantidad ficticia procedente de la fuente.
-
-## Universo para combinar los dos hechos
-
-Para estudiar incidentes y movilizaciones sobre el mismo conjunto de atenciones se aplican conjuntamente FactIncidente.TieneMovilizacion=1 y FactMovilizacion.TieneIncidente=1. Ambos controles se calculan después de resolver duplicados y separar conflictos. Los incidentes sin enlace no se eliminan de FactIncidente y las movilizaciones sin enlace permanecen con sus dimensiones compartidas desconocidas.
-
-Este universo común se usa en comparaciones que combinan medidas de ambos hechos. Para describir toda la demanda publicada puede usarse FactIncidente completo, identificando que es un universo más amplio. Cada promedio debe mostrar su cantidad de valores válidos y no sustituir tiempos ausentes por cero. Estos controles de enlace no demuestran ausencia de asistencia ni falta de disponibilidad operativa.
